@@ -1,0 +1,41 @@
+.evaluation__form{
+    width: 100%;
+    max-width: 950px;
+    margin-inline: auto;
+    margin-bottom: 30px;
+}
+
+.form-control{
+    margin-bottom: 20px;
+}
+.evaluation__form button{
+    padding: 9px 35px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.evaluation__form button:hover, .evaluation__form button:focus{
+    background-color: #00274d;
+}
+.scoring-table{
+    width: 100%;
+    table-layout: fixed;
+    margin-bottom: 40px;
+}
+.scoring-table tr th:first-child, .scoring-table tr td:first-child{
+    width: 50%;
+}
+.scoring-table tr th:not(:first-child), .scoring-table tr td:not(:first-child){
+    text-align:  center;
+}
+.scoring-table th, .scoring-table td{
+    padding: 0 10px 0 0;
+}
+.userlist-table th, .userlist-table td{
+    border: none;
+}
