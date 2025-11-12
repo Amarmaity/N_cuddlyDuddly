@@ -3,14 +3,14 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\MasterCategory;
 use App\Models\Department;
+use App\Models\MasterCategory;
+use App\Models\MasterCategorySection;
 
 class MasterCategoryDepartmentSeeder extends Seeder
 {
     public function run(): void
     {
-        // Define mapping between master categories and departments
         $mapping = [
             'BOY FASHION' => 'Apparel',
             'GIRL FASHION' => 'Apparel',
@@ -26,14 +26,19 @@ class MasterCategoryDepartmentSeeder extends Seeder
 
         foreach ($mapping as $masterName => $departmentName) {
             $department = Department::where('name', $departmentName)->first();
-            $master = MasterCategory::where('name', $masterName)->first();
+            $masterCategory = MasterCategory::where('name', $masterName)->first();
 
-            if ($department && $master) {
-                $master->department_id = $department->id;
-                $master->save();
+            if ($department && $masterCategory) {
+                // find related section record
+                $section = MasterCategorySection::where('master_category_id', $masterCategory->id)->first();
+
+                if ($section) {
+                    $section->department_id = $department->id;
+                    $section->save();
+                }
             }
         }
 
-        $this->command->info('✅ Master categories linked to departments successfully!');
+        $this->command->info('✅ Master category sections linked to departments successfully!');
     }
 }
