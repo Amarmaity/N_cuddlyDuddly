@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:ital,wght@0,400..800;1,400..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/slick-theme.css">
+    <link rel="stylesheet" href="assets/css/output.css">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+</head>
+
+<body>
+    <header class="relative w-full bg-white text-white px-5">
+        <div class="container max-w-container mx-auto">
+            <div class="flex flex-wrap flex-row-reverse lg:flex-row items-center gap-6 pt-5 pb-2 md:pb-3.5">
+                <a href="./index.html" class="hidden lg:inline-flex items-center">
+                    <img src="assets/images/cuddlyduddlylogo1.png" alt="Logo"
+                        class="lg:max-w-(--max-w-lg) xl:max-w-(--max-w-xl)">
+                </a>
+                <nav
+                    class="flex-none lg:flex-5 xl:flex-1 w-full lg:w-auto flex items-center justify-between gap-6 order-3 lg:order-0">
+                    <div
+                        class="relative w-full transform origin-top lg:w-auto lg:flex-1 flex lg:flex flex-row items-start lg:justify-end lg:items-center gap-6 lg:opacity-100 pt-0 pb-4 px-4 lg:p-0">
+                        <div
+                            class="w-full md:max-w-[700px] lg:w-full xl:max-w-(--max-w-search) lg:flex-3 md:mx-auto lg:mx-0 btn-wrapper text-black bg-white">
+                            <img src="assets/images/magnifying-glass.png" alt="" class="max-w-icon">
+                            <input type="text" placeholder="Find baby products & beyond"
+                                class="max-w-input placeholder:text-block placeholder:text-black pointer-events-auto">
+                        </div>
+
+                        <a
+                            class="w-full hidden xl:max-w-(--max-w-vendor) lg:flex-2 lg:flex justify-center items-center gap-2 btn-wrapper rounded-xxl border border-black/20 cursor-pointer hover:bg-black/20!">
+                            <img src="assets/images/home.png" alt="" class="max-w-icon">
+                            <span class="text-block">Become a Vendor</span>
+                        </a>
+                    </div>
+                </nav>
+                <div
+                    class="relative z-50 flex-1 lg:flex-none xl:flex-none flex justify-end items-center gap-2 md:gap-6">
+                    <a href="#!"
+                        class="w-full max-w-(--min-w-5xs) md:max-w-[135px] max-h-10 lg:max-h-[unset] xl:min-w-(--min-w-xs) lg:flex-1 btn-wrapper  bg-pink-transparent cursor-pointer hover:bg-black">
+                        <img src="assets/images/loginicon.png" alt="login icon" class="max-w-icon">
+                        <span class="text-block text-white">Login</span>
+                    </a>
+
+                    <button class="btn cursor-pointer flex justify-center items-center">
+                        <img src="assets/images/cart.png" class="max-w-icon" alt="">
+                    </button>
+                </div>
+                <div class="flex-1 flex lg:shrink lg:justify-end xl:flex-none gap-2 md:gap-6">
+                    <button id="hamburger"
+                        class="btn cursor-pointer text-lg text-black border-0 lg:border lg:border-black/20">
+                        <i class="fa-solid fa-ellipsis-vertical hidden! lg:block!"></i>
+                        <i class="fa-solid fa-bars block lg:hidden!"></i>
+                    </button>
+                    <a href="#" class="block lg:hidden">
+                        <img src="assets/images/cuddlyduddlylogo.png" alt="Logo"
+                            class="min-w-(--min-w-logo) md:max-w-(--max-w-xl) object-contain -ml-2 md:ml-0">
+                    </a>
+                    <div class="z-50 w-3/5 lg:w-[500px] h-full lg:origin-top lg:flex-1 flex lg:flex flex-col lg:flex-row items-start gap-6 lg:opacity-100 p-5  bg-white"
+                        id="navbar">
+                        <ul
+                            class="w-full lg:rounded-block lg:shadow-[0_20px_50px_rgba(0,0,0,0.15)] lg:p-3.5 lg:pb-4 bg-white">
+                            <li>
+                                <div class="w-full flex flex-col gap-4" bis_skin_checked="1">
+                                    <span class="megadown-title">POPULAR</span>
+                                    <ul class="megadown-list">
+                                        <li class="relative megadown-items">
+                                            <a href="" class="w-full megalink inline-flex justify-between gap-4"
+                                                tabindex="0">
+                                                <span>Jacket</span>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </a>
+                                            <div class="megadropdown">
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">POPULAR</span>
+                                                    <ul class="dropdown-list">
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Jacket</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon1.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>GirlFashion</span>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon2.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Trouser</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon3.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Leggings</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Hand Gloves</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">MENU</span>
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="">All Category</a></li>
+                                                        <li><a href="">Gift Cards</a></li>
+                                                        <li><a href="">Special Events</a></li>
+                                                        <li><a href="">Testimonial</a></li>
+                                                        <li><a href="">Blog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="relative megadown-items">
+                                            <a href="" class="w-full megalink inline-flex justify-between gap-4"
+                                                tabindex="0">
+                                                <span>Girl Fashion</span>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </a>
+                                            <div class="megadropdown">
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">POPULAR</span>
+                                                    <ul class="dropdown-list">
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Jacket</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon1.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>GirlFashion</span>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon2.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Trouser</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon3.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Leggings</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Hand Gloves</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">MENU</span>
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="">All Category</a></li>
+                                                        <li><a href="">Gift Cards</a></li>
+                                                        <li><a href="">Special Events</a></li>
+                                                        <li><a href="">Testimonial</a></li>
+                                                        <li><a href="">Blog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="relative megadown-items">
+                                            <a href="" class="w-full megalink inline-flex justify-between gap-4"
+                                                tabindex="0">
+                                                <span>Boy Fashion</span>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </a>
+                                            <div class="megadropdown">
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">POPULAR</span>
+                                                    <ul class="dropdown-list">
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Jacket</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon1.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>GirlFashion</span>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon2.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Trouser</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon3.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Leggings</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Hand Gloves</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">MENU</span>
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="">All Category</a></li>
+                                                        <li><a href="">Gift Cards</a></li>
+                                                        <li><a href="">Special Events</a></li>
+                                                        <li><a href="">Testimonial</a></li>
+                                                        <li><a href="">Blog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="relative megadown-items">
+                                            <a href="" class="w-full megalink inline-flex justify-between gap-4"
+                                                tabindex="0">
+                                                <span>Baby Cloth</span>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </a>
+                                            <div class="megadropdown">
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">POPULAR</span>
+                                                    <ul class="dropdown-list">
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Jacket</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon1.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>GirlFashion</span>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon2.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Trouser</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon3.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Leggings</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Hand Gloves</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">MENU</span>
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="">All Category</a></li>
+                                                        <li><a href="">Gift Cards</a></li>
+                                                        <li><a href="">Special Events</a></li>
+                                                        <li><a href="">Testimonial</a></li>
+                                                        <li><a href="">Blog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="hidden relative z-10 lg:block w-full">
+        <div class="container max-w-full 2xl:mx-auto">
+            <div class="w-full p-4 lg:pl-8 lg:py-6 border-t border-b border-black/20 bg-white">
+                <div class="slider">
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Strollers</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">POPULAR</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">MENU</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">OTHER</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Car seats</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">POPULAR</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">MENU</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">OTHER</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Furniture</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">POPULAR</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">MENU</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">OTHER</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Bedding</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">POPULAR</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">MENU</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">OTHER</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Bath & diapering</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">POPULAR</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">MENU</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">OTHER</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Apparel</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">POPULAR</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">MENU</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">OTHER</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Nursing & feeding</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">POPULAR</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">MENU</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">OTHER</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Safety & wellness</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">POPULAR</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">MENU</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-col gap-4">
+                                    <span class="dropdown-title">OTHER</span>
+                                    <ul class="dropdown-list">
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Jacket</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon1.png" alt="" class="max-w-icon">
+                                                <span>GirlFashion</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon2.png" alt="" class="max-w-icon">
+                                                <span>Trouser</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/icon3.png" alt="" class="max-w-icon">
+                                                <span>Leggings</span>
+                                            </a></li>
+                                        <li><a href="" class="inline-flex gap-4">
+                                                <img src="assets/images/home.png" alt="" class="max-w-icon">
+                                                <span>Hand Gloves</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Apparel</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:block absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl">
+                                <a href="#">Item 1</a>
+                                <a href="#">Item 2</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Gear & Toys</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:block absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl">
+                                <a href="#">Item 1</a>
+                                <a href="#">Item 2</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Boutiques</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:block absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl">
+                                <a href="#">Item 1</a>
+                                <a href="#">Item 2</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Click Me</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:block absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl">
+                                <a href="#">Item 1</a>
+                                <a href="#">Item 2</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Click Me</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:block absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl">
+                                <a href="#">Item 1</a>
+                                <a href="#">Item 2</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Click Me</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:block absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl">
+                                <a href="#">Item 1</a>
+                                <a href="#">Item 2</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="slide">
+                        <div class="group relative inline-block">
+                            <button class="menu-btn">Click Me</button>
+                            <div id="my-dropdown"
+                                class="hidden group-hover:block absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl">
+                                <a href="#">Item 1</a>
+                                <a href="#">Item 2</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper px-5 pt-0 md:pt-7">
+        <div class="container max-w-container mx-auto">
+            <div class="flex flex-col lg:flex-row gap-4">
+                <div class="flex flex-col">
+                    <p class="text-block">Nursing and Feeding 160of 1,700 Results</p>
+                    <h4
+                        class="font-sans text-3xl font-semibold leading-tight tracking-1 text-black mt-7 pb-[50px] lg:pb-[100px] text-center md:text-left">
+                        Nursing and
+                        Feeding
+                    </h4>
+                    <button class="flex md:hidden max-w-(--min-w-5xs) btn-wrapper bg-white cursor-pointer hover:bg-black"
+                        id="filterbtn"><span><img src="assets/images/listingimages/filterbtn.png" alt="filter btn"
+                                class=""></span><span>Filter</span></button>
+                    <div class="popup-content" id="filterpopup">
+                        <span class="block md:hidden close"><i class="fa fa-close"></i></span>
+                    <div class="pl-3.5 pr-0 pt-6 pb-4 rounded-block border border-black/30 bg-white" >
+                        <ul class="w-full max-h-(--max-h-list) overflow-y-scroll custom-scrollbar">
+                            <li>
+                                <div class="w-full flex flex-col gap-4" bis_skin_checked="1">
+                                    <ul class="megadown-list cartlist pr-3.5">
+                                        <li class="relative megadown-items">
+                                            <a href="" class="w-full megalink inline-flex justify-between gap-4"
+                                                tabindex="0">
+                                                <span>Catgories</span>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </a>
+                                            <div class="megadropdown" bis_skin_checked="1">
+                                                <div class="flex flex-col gap-4" bis_skin_checked="1">
+                                                    <span class="dropdown-title text-black">POPULAR</span>
+                                                    <ul class="dropdown-list">
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Jacket</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon1.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>GirlFashion</span>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon2.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Trouser</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon3.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Leggings</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Hand Gloves</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="flex flex-col gap-4" bis_skin_checked="1">
+                                                    <span class="dropdown-title text-black">MENU</span>
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="">All Category</a></li>
+                                                        <li><a href="">Gift Cards</a></li>
+                                                        <li><a href="">Special Events</a></li>
+                                                        <li><a href="">Testimonial</a></li>
+                                                        <li><a href="">Blog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="relative megadown-items">
+                                            <a href="" class="w-full megalink inline-flex justify-between gap-4"
+                                                tabindex="0">
+                                                <span>Delivery</span>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </a>
+                                            <div class="megadropdown" bis_skin_checked="1">
+                                                <div class="flex flex-col gap-4" bis_skin_checked="1">
+                                                    <span class="dropdown-title text-black">POPULAR</span>
+                                                    <ul class="dropdown-list">
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Jacket</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon1.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>GirlFashion</span>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon2.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Trouser</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon3.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Leggings</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Hand Gloves</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="flex flex-col gap-4" bis_skin_checked="1">
+                                                    <span class="dropdown-title text-black">MENU</span>
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="">All Category</a></li>
+                                                        <li><a href="">Gift Cards</a></li>
+                                                        <li><a href="">Special Events</a></li>
+                                                        <li><a href="">Testimonial</a></li>
+                                                        <li><a href="">Blog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="relative megadown-items">
+                                            <a href="" class="w-full megalink inline-flex justify-between gap-4"
+                                                tabindex="0">
+                                                <span>Price</span>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </a>
+                                            <div class="megadropdown" bis_skin_checked="1">
+                                                <div class="flex flex-col gap-4" bis_skin_checked="1">
+                                                    <span class="dropdown-title text-black">POPULAR</span>
+                                                    <ul class="dropdown-list">
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Jacket</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon1.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>GirlFashion</span>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon2.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Trouser</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon3.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Leggings</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Hand Gloves</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="flex flex-col gap-4" bis_skin_checked="1">
+                                                    <span class="dropdown-title text-black">MENU</span>
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="">All Category</a></li>
+                                                        <li><a href="">Gift Cards</a></li>
+                                                        <li><a href="">Special Events</a></li>
+                                                        <li><a href="">Testimonial</a></li>
+                                                        <li><a href="">Blog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="relative megadown-items">
+                                            <a href="" class="w-full megalink inline-flex justify-between gap-4"
+                                                tabindex="0">
+                                                <span>Material</span>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </a>
+                                            <div class="megadropdown" bis_skin_checked="1">
+                                                <div class="flex flex-col gap-4" bis_skin_checked="1">
+                                                    <span class="dropdown-title text-black">POPULAR</span>
+                                                    <ul class="dropdown-list">
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Jacket</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon1.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>GirlFashion</span>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon2.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Trouser</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon3.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Leggings</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Hand Gloves</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="flex flex-col gap-4" bis_skin_checked="1">
+                                                    <span class="dropdown-title text-black">MENU</span>
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="">All Category</a></li>
+                                                        <li><a href="">Gift Cards</a></li>
+                                                        <li><a href="">Special Events</a></li>
+                                                        <li><a href="">Testimonial</a></li>
+                                                        <li><a href="">Blog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="relative megadown-items">
+                                            <a href="" class="w-full megalink inline-flex justify-between gap-4"
+                                                tabindex="0">
+                                                <span>Color</span>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </a>
+                                            <div class="megadropdown">
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">POPULAR</span>
+                                                    <ul class="dropdown-list">
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Jacket</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon1.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>GirlFashion</span>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon2.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Trouser</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon3.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Leggings</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Hand Gloves</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">MENU</span>
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="">All Category</a></li>
+                                                        <li><a href="">Gift Cards</a></li>
+                                                        <li><a href="">Special Events</a></li>
+                                                        <li><a href="">Testimonial</a></li>
+                                                        <li><a href="">Blog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="relative megadown-items">
+                                            <a href="" class="w-full megalink inline-flex justify-between gap-4"
+                                                tabindex="0">
+                                                <span>Customer ratings</span>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </a>
+                                            <div class="megadropdown">
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">POPULAR</span>
+                                                    <ul class="dropdown-list">
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Jacket</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon1.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>GirlFashion</span>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon2.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Trouser</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon3.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Leggings</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Hand Gloves</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">MENU</span>
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="">All Category</a></li>
+                                                        <li><a href="">Gift Cards</a></li>
+                                                        <li><a href="">Special Events</a></li>
+                                                        <li><a href="">Testimonial</a></li>
+                                                        <li><a href="">Blog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="relative megadown-items">
+                                            <a href="" class="w-full megalink inline-flex justify-between gap-4"
+                                                tabindex="0">
+                                                <span>Pattern</span>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </a>
+                                            <div class="megadropdown">
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">POPULAR</span>
+                                                    <ul class="dropdown-list">
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Jacket</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon1.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>GirlFashion</span>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon2.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Trouser</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon3.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Leggings</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Hand Gloves</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">MENU</span>
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="">All Category</a></li>
+                                                        <li><a href="">Gift Cards</a></li>
+                                                        <li><a href="">Special Events</a></li>
+                                                        <li><a href="">Testimonial</a></li>
+                                                        <li><a href="">Blog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="relative megadown-items">
+                                            <a href="" class="w-full megalink inline-flex justify-between gap-4"
+                                                tabindex="0">
+                                                <span>Demo 1</span>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </a>
+                                            <div class="megadropdown">
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">POPULAR</span>
+                                                    <ul class="dropdown-list">
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Jacket</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon1.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>GirlFashion</span>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon2.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Trouser</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon3.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Leggings</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Hand Gloves</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">MENU</span>
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="">All Category</a></li>
+                                                        <li><a href="">Gift Cards</a></li>
+                                                        <li><a href="">Special Events</a></li>
+                                                        <li><a href="">Testimonial</a></li>
+                                                        <li><a href="">Blog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="relative megadown-items">
+                                            <a href="" class="w-full megalink inline-flex justify-between gap-4"
+                                                tabindex="0">
+                                                <span>Demo 2</span>
+                                                <i class="fa-solid fa-angle-down"></i>
+                                            </a>
+                                            <div class="megadropdown">
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">POPULAR</span>
+                                                    <ul class="dropdown-list">
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Jacket</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon1.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>GirlFashion</span>
+                                                            </a>
+                                                        </li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon2.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Trouser</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/icon3.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Leggings</span>
+                                                            </a></li>
+                                                        <li><a href="" class="inline-flex gap-4">
+                                                                <img src="assets/images/home.png" alt=""
+                                                                    class="max-w-icon">
+                                                                <span>Hand Gloves</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title text-black">MENU</span>
+                                                    <ul class="dropdown-list">
+                                                        <li><a href="">All Category</a></li>
+                                                        <li><a href="">Gift Cards</a></li>
+                                                        <li><a href="">Special Events</a></li>
+                                                        <li><a href="">Testimonial</a></li>
+                                                        <li><a href="">Blog</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                <div class="flex-1 pt-7">
+                    <div x-data="tabsComponent()" x-init="loadTabs()" class="w-full  bg-white">
+                        <!-- Tabs Buttons -->
+                        <div class="flex flex-auto overflow-x-scroll md:overflow-x-hidden md:flex-wrap gap-4 mb-9">
+                            <template x-for="tab in tabs" :key="tab.name">
+                                <button class="flex justify-center items-center gap-4 py-1.5
+                 pl-1.5 pr-6 text-sm font-medium rounded-tab border border-black/20"
+                                    :class="activeTab === tab.name ? 'border-2 border-pink-transparent' : ''"
+                                    @click="activeTab = tab.name">
+                                    <span class="w-[45px] h-[45px] rounded-full overflow-hidden"><img :src="tab.icon"
+                                            alt="" /></span>
+                                    <span x-text="tab.name"
+                                        class="whitespace-nowrap font-sans font-normal text-xs leading-tight tracking-1 text-black"></span>
+                                </button>
+                            </template>
+                        </div>
+
+                        <!-- Tab Content -->
+                        <template x-for="tab in tabs" :key="tab.name">
+                            <div x-show="activeTab === tab.name" x-cloak x-transition>
+                                <div
+                                    class="grid grid-cols-2 lg:grid-cols-3 gap-y-(--margin-sm) gap-3 md:gap-5 addtocart">
+                                    <template x-for="product in tab.products" :key="product.id">
+                                        <div class="flex flex-col">
+                                            <div
+                                                class="cart border border-black/30 rounded-[18px] md:rounded-block overflow-hidden">
+                                                <img :src="product.image" :alt="product.name">
+                                            </div>
+                                            <p class="cart-text" x-text="product.name"></p>
+                                            <span class="cart-span" x-text="product.info"></span>
+                                            <div class="cart-rating"><span class="max-w-icon"><img
+                                                        src="assets/images/staricon.png" alt=""
+                                                        class="max-w-(--max-w-xl) object-contain"></span><span
+                                                    class="cart-span text-white" x-text="product.review"></span></div>
+                                            <div class="flex-box justify-start items-end gap-3 mt-2"><span
+                                                    class="cart-discount" x-text="product.discounted"></span><span
+                                                    class="cart-price line-through decoration-1"
+                                                    x-text="product.price"></span>
+                                            </div>
+                                            <button
+                                                class="group flex-box mt-4 p-2 sm:p-3 md:p-5 rounded-xxl border border-black/20">
+                                                <svg width="23" height="23" viewBox="0 0 29 29" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    class="group-hover:text-white w-auto max-[480px]:w-3.5">
+                                                    <path
+                                                        d="M9.66634 26.5832C10.3337 26.5832 10.8747 26.0422 10.8747 25.3748C10.8747 24.7075 10.3337 24.1665 9.66634 24.1665C8.999 24.1665 8.45801 24.7075 8.45801 25.3748C8.45801 26.0422 8.999 26.5832 9.66634 26.5832Z"
+                                                        stroke="currentColor" stroke-width="2.41667"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path
+                                                        d="M22.9583 26.5834C23.6257 26.5834 24.1667 26.0424 24.1667 25.3751C24.1667 24.7077 23.6257 24.1667 22.9583 24.1667C22.291 24.1667 21.75 24.7077 21.75 25.3751C21.75 26.0424 22.291 26.5834 22.9583 26.5834Z"
+                                                        stroke="currentColor" stroke-width="2.41667"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path
+                                                        d="M2.47656 2.47705H4.89323L8.1074 17.4846C8.2253 18.0342 8.53112 18.5255 8.97221 18.874C9.4133 19.2224 9.96207 19.4062 10.5241 19.3937H22.3416C22.8916 19.3928 23.4248 19.2044 23.8532 18.8594C24.2816 18.5145 24.5796 18.0338 24.6978 17.4966L26.6916 8.51872H6.18615"
+                                                        stroke="currentColor" stroke-width="2.41667"
+                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                </svg>
+                                                <span class="addcart">Add to
+                                                    cart</span>
+                                            </button>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="wrapper mt-lg px-5 pb-10">
+        <div class="container max-w-container mx-auto">
+            <div
+                class="flex flex-col justify-start gap-y-9 md:gap-y-5 lg:gap-0 lg:flex-row lg:justify-between lg:items-center">
+                <div class="flex flex-col">
+                    <a href="./index.html"><img src="assets/images/footerlogo.png" alt="logo"
+                            class="max-w-(--min-w-s) mb-3.5"></a>
+                    <p class="footer-text">Ecommerce is a free UI Kit from Paperpillar that you can use for your
+                        personal or
+                        commercial project.</p>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="border-[1.05px] border/black rounded-email email-text">
+                            <input type="text" placeholder="Type your email address"
+                                class="placeholder:font-sans placeholder:font-normal placeholder:text-(length:--font-2sm) placeholder:leading-tight placeholder:tracking-1 placeholder:text-black">
+                        </div>
+                        <button class="max-w-(--max-w-lg) min-w-(--min-w-5xs) flex-box p-3.5 rounded-email bg-black">
+                            <span
+                                class="font-sans font-semibold text-(length:--font-2sm) leading-tight tracking-1 text-white">Submit</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-9 md:grid-cols-3 md:gap-28">
+                    <div class="flex flex-col gap-4">
+                        <span class="footer-title">POPULAR</span>
+                        <ul class="footer-list">
+                            <li><a href="">Shoes</a></li>
+                            <li><a href="">T-Shirt</a></li>
+                            <li><a href="">Jackets</a></li>
+                            <li><a href="">Hat</a></li>
+                            <li><a href="">Accessories</a></li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <span class="footer-title">MENU</span>
+                        <ul class="footer-list">
+                            <li><a href="">All Category</a></li>
+                            <li><a href="">Gift Cards</a></li>
+                            <li><a href="">Special Events</a></li>
+                            <li><a href="">Testimonial</a></li>
+                            <li><a href="">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <span class="footer-title">OTHER</span>
+                        <ul class="footer-list">
+                            <li><a href="">Tracking Package</a></li>
+                            <li><a href="">FAQ</a></li>
+                            <li><a href="">About Us</a></li>
+                            <li><a href="">Contact Us</a></li>
+                            <li><a href="">Terms and Conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/slick.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.slider').slick({
+                slidesToShow: 7,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 0,
+                speed: 3000,
+                cssEase: 'linear',
+                centerPadding: '40px',
+                infinite: true,
+                arrows: true,
+                dots: false,
+                prevArrow: '<button type="button" class="slick-prev hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>',
+                nextArrow: '<button type="button" class="slick-next"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.1875 12.375L10.3125 8.25L6.1875 4.125" stroke="white" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/></svg></button>',
+                responsive: [
+                    {
+                        breakpoint: 1536,
+                        settings: {
+                            slidesToShow: 7,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+
+            $('.slider').on('afterChange', function (event, slick, currentSlide) {
+                if (currentSlide > 0) {
+                    $('.slick-prev').removeClass('hidden');
+                } else {
+                    $('.slick-prev').addClass('hidden');
+                }
+            });
+        });
+        function tabsComponent() {
+            return {
+                tabs: [],
+                activeTab: '',
+                async loadTabs() {
+                    try {
+                        const res = await fetch('tabs-data.json'); // Load from separate file
+                        if (!res.ok) throw new Error('Failed to load tabs');
+                        this.tabs = await res.json();
+                        if (this.tabs.length) this.activeTab = this.tabs[0].name;
+                    } catch (err) {
+                        console.error(err);
+                        this.tabs = [{ name: 'Error', products: [] }];
+                        this.activeTab = 'Error';
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
