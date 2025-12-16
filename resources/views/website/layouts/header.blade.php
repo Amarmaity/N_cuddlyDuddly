@@ -18,13 +18,14 @@
                             class="max-w-input placeholder:text-block placeholder:text-black pointer-events-auto">
                     </div>
 
-                    <a
+                    <a href="{{ route('seller.login') }}"
                         class="w-full hidden xl:max-w-(--max-w-vendor) lg:flex-2 lg:flex justify-center items-center gap-2 btn-wrapper rounded-xxl border border-black/20 cursor-pointer hover:bg-black/20!">
                         <img src="{{ asset('storage/WebsiteImages/home/home.png') }}" alt="" class="max-w-icon">
                         <span class="text-block">Become a Vendor</span>
                     </a>
                 </div>
             </nav>
+
             <div class="relative z-50 flex-1 lg:flex-none xl:flex-none flex justify-end items-center gap-2 md:gap-6">
                 <a href="#!"
                     class="w-full max-w-[90px] min-[480px]:max-w-(--min-w-5xs) md:max-w-[135px] max-h-10 lg:max-h-[unset] xl:min-w-(--min-w-xs) lg:flex-1 btn-wrapper  bg-pink-transparent cursor-pointer hover:bg-black">

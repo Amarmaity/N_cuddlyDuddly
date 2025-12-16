@@ -17,35 +17,6 @@ use App\Models\MasterCategorySection;
 class CategoryController extends Controller
 {
 
-    // public function index()
-    // {
-    //     $departments = Department::paginate(2);
-
-    //     $departments->load('masterCategories.sectionTypes');
-
-    //     $departments->each(
-    //         fn($department) =>
-    //         $department->masterCategories->each(
-    //             fn($mc) =>
-    //             $mc->sectionTypes->each(function ($st) use ($mc) {
-
-    //                 $categories = DB::table('master_category_sections')
-    //                     ->join('categories', 'categories.id', '=', 'master_category_sections.category_id')
-    //                     ->where('master_category_sections.master_category_id', $mc->id)
-    //                     ->where('master_category_sections.section_type_id', $st->id)
-    //                     ->select('categories.*')
-    //                     ->orderBy('categories.name')
-    //                     ->get()
-    //                     ->map(fn($c) => new Category((array)$c));
-
-    //                 $st->setRelation('categories', $categories);
-    //             })
-    //         )
-    //     );
-
-    //     return view('admin.categories.index', compact('departments'));
-    // }
-
     public function index()
     {
         // load top-level departments that exist in master_category_sections
@@ -60,6 +31,8 @@ class CategoryController extends Controller
 
         return view('admin.categories.index', compact('departments'));
     }
+
+    
     // Fetch children for a node (lazy load)
     public function children(Request $request, $level, $id = null)
     {
@@ -130,7 +103,7 @@ class CategoryController extends Controller
             ->join('product_category_section as pcs', 'pcs.product_id', '=', 'products.id')
             ->join('master_category_sections as mcs', 'mcs.id', '=', 'pcs.master_category_section_id')
             ->select('products.*')
-            ->distinct('products.id');   // 🔥 FIX: avoid GROUP BY issues
+            ->distinct('products.id');  
 
         // 🧩 Apply chain filter
         if ($chainType === 'department') {
@@ -169,6 +142,8 @@ class CategoryController extends Controller
 
         return response()->json($products);
     }
+
+    
 
     public function update(Request $request, $id)
     {

@@ -9,1016 +9,80 @@
 @section('content')
     <div class="hidden relative z-10 lg:block w-full">
         <div class="container max-w-full 2xl:mx-auto">
-            <div class="w-full border-t border-b border-black/20 bg-white">
+            <div class="w-full border-t border-b border-black/20 bg-white ">
                 <div class="w-full h-full flex justify-evenly cursor-pointer p-4 lg:pl-8 lg:py-6 ">
-                    <div class="slide">
-                        <div class="group relative inline-block">
-                            <button class="menu-btn">Strollers</button>
-                            <div id="my-dropdown"
-                                class="dropdown hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">POPULAR</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}" alt=""
-                                                    class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}" alt=""
-                                                    class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">MENU</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}" alt=""
-                                                    class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">OTHER</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
+                    @foreach ($departments as $department)
+                        <div class="slide">
+                            <div class="group relative inline-block">
+                                <button class="menu-btn">
+                                    {{ $department->name }}
+                                </button>
+                                <div
+                                    class="dropdown hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
+
+                                    {{-- Loop through unique master categories --}}
+                                    @foreach ($department->masterCategories->unique('master_category_id') as $masterCategory)
+
+                                        @php
+                                            $grouped = [];
+                                        @endphp
+
+                                        @foreach ($masterCategory->categories as $category)
+                                            @php
+                                                $sectionType = $masterCategory->sectionTypes
+                                                    ->firstWhere('id', $category->pivot->section_type_id);
+                                            @endphp
+
+                                            @if ($sectionType)
+                                                @php
+                                                    $grouped[$sectionType->name][] = $category;
+                                                @endphp
+                                            @endif
+                                        @endforeach
+
+                                        {{-- Make categories unique per section type --}}
+                                        @foreach ($grouped as $sectionName => $categories)
+                                            @php
+                                                $grouped[$sectionName] = collect($categories)->unique('id');
+                                            @endphp
+                                        @endforeach
+
+                                        {{-- Render grouped data --}}
+                                        @foreach ($grouped as $sectionName => $categories)
+                                            @if(count($categories)) {{-- Only render if there are categories --}}
+                                                <div class="flex flex-col gap-4">
+                                                    <span class="dropdown-title">
+                                                        {{ strtoupper($sectionName) }}
+                                                    </span>
+
+                                                    <ul class="dropdown-list">
+                                                        @foreach (collect($categories)->unique('id') as $category) {{-- Ensure unique
+                                                            categories --}}
+                                                            <li>
+                                                                <a href="{{ route('admin.category-explorer.products') }}"
+                                                                    class="inline-flex gap-4">
+                                                                    <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
+                                                                        class="max-w-icon" alt="">
+                                                                    <span>{{ $category->name }}</span>
+                                                                </a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+                                        @endforeach
+
+                                    @endforeach
+
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-                    <div class="slide">
-                        <div class="group relative inline-block">
-                            <button class="menu-btn">Car seats</button>
-                            <div id="my-dropdown"
-                                class="dropdown hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">POPULAR</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">MENU</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">OTHER</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="slide">
-                        <div class="group relative inline-block">
-                            <button class="menu-btn">Furniture</button>
-                            <div id="my-dropdown"
-                                class="dropdown hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">POPULAR</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">MENU</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">OTHER</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="slide">
-                        <div class="group relative inline-block">
-                            <button class="menu-btn">Bedding</button>
-                            <div id="my-dropdown"
-                                class="dropdown hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">POPULAR</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">MENU</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">OTHER</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="slide">
-                        <div class="group relative inline-block">
-                            <button class="menu-btn">Bath & diapering</button>
-                            <div id="my-dropdown"
-                                class="dropdown hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">POPULAR</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">MENU</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">OTHER</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="slide">
-                        <div class="group relative inline-block">
-                            <button class="menu-btn">Apparel</button>
-                            <div id="my-dropdown"
-                                class="dropdown hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">POPULAR</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">MENU</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">OTHER</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="slide">
-                        <div class="group relative inline-block">
-                            <button class="menu-btn">Nursing & feeding</button>
-                            <div id="my-dropdown"
-                                class="dropdown hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">POPULAR</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">MENU</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">OTHER</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                     <div class="slide">
-                        <div class="group relative inline-block">
-                            <button class="menu-btn">Gear & Toys</button>
-                            <div id="my-dropdown"
-                                class="dropdown hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">POPULAR</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">MENU</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">OTHER</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="slide">
-                        <div class="group relative inline-block">
-                            <button class="menu-btn">Women’s beauty & care</button>
-                            <div id="my-dropdown"
-                                class="dropdown hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:grid">
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">POPULAR</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">MENU</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                                <div class="flex flex-col gap-4">
-                                    <span class="dropdown-title">OTHER</span>
-                                    <ul class="dropdown-list">
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Jacket</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>GirlFashion</span>
-                                            </a>
-                                        </li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon2.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Trouser</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/icon3.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Leggings</span>
-                                            </a></li>
-                                        <li><a href="" class="inline-flex gap-4">
-                                                <img src="{{ asset('storage/WebsiteImages/home/home.png') }}"
-                                                    alt="" class="max-w-icon">
-                                                <span>Hand Gloves</span>
-                                            </a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
+
     <div class="relative z-0 w-full pb-6 lg:pb-0">
         <div class="container max-w-container mx-auto">
             <div class="relative flex flex-col gap-2 mb-lg px-5">
@@ -1065,6 +129,7 @@
         <img src="{{ asset('storage/WebsiteImages/home/background-pattern.png') }}" alt="background image"
             class="absolute top-[61%] md:top-[54%] max-h-64">
     </div>
+
     <div class="w-full px-5 overflow-hidden mt-lg">
         <div class="container max-w-container mx-auto">
             <div class="relative w-full mb-10 rounded-block overflow-hidden">
@@ -1109,11 +174,12 @@
 
         </div>
     </div>
+
     <div class="wrapper px-5 mt-lg">
         <div class="container max-w-container mx-auto">
             <div class="title flex-box mt-lg mb-sm">
-                <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon"
-                        class="max-w-6"></div> <span class="label text-black">Shop by category</span>
+                <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon" class="max-w-6">
+                </div> <span class="label text-black">Shop by category</span>
             </div>
 
             <div class="relative grid gap-4">
@@ -1250,8 +316,8 @@
     <div class="relative wrapper px-5">
         <div class="container relative z-10 max-w-container mx-auto">
             <div class="title flex-box mt-lg mb-sm lg:mb-[200px]">
-                <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon"
-                        class="max-w-6"></div> <span class="label text-black">Shop by customer favourites</span>
+                <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon" class="max-w-6">
+                </div> <span class="label text-black">Shop by customer favourites</span>
             </div>
             <div class="relative">
                 <div class="max-w-4xl m-auto flex flex-col justify-center">
@@ -1339,11 +405,12 @@
             <img src="{{ asset('storage/WebsiteImages/home/pattern2.png') }}" alt="">
         </div>
     </div>
+
     <div class="wrapper px-5 mt-lg">
         <div class="container max-w-container mx-auto">
             <div class="title flex-box mb-sm">
-                <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon"
-                        class="max-w-6"></div> <span class="label text-black">Featured bestsellers</span>
+                <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon" class="max-w-6">
+                </div> <span class="label text-black">Featured bestsellers</span>
             </div>
             <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-(--margin-sm) gap-3 md:gap-5 addtocart">
                 <div class="flex flex-col">
@@ -1362,8 +429,7 @@
                     </div>
                     <button class="group flex-box mt-4 p-2 sm:p-3 md:p-5 rounded-xxl border border-black/20">
                         <div>
-                            <svg width="23" height="23" viewBox="0 0 29 29" fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                            <svg width="23" height="23" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg"
                                 class="group-hover:text-white max-h-4 sm:max-h-[unset]">
                                 <path
                                     d="M9.66634 26.5832C10.3337 26.5832 10.8747 26.0422 10.8747 25.3748C10.8747 24.7075 10.3337 24.1665 9.66634 24.1665C8.999 24.1665 8.45801 24.7075 8.45801 25.3748C8.45801 26.0422 8.999 26.5832 9.66634 26.5832Z"
@@ -1398,8 +464,7 @@
                     </div>
                     <button class="group flex-box mt-4 p-2 sm:p-3 md:p-5 rounded-xxl border border-black/20">
                         <div>
-                            <svg width="23" height="23" viewBox="0 0 29 29" fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                            <svg width="23" height="23" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg"
                                 class="group-hover:text-white max-h-4 sm:max-h-[unset]">
                                 <path
                                     d="M9.66634 26.5832C10.3337 26.5832 10.8747 26.0422 10.8747 25.3748C10.8747 24.7075 10.3337 24.1665 9.66634 24.1665C8.999 24.1665 8.45801 24.7075 8.45801 25.3748C8.45801 26.0422 8.999 26.5832 9.66634 26.5832Z"
@@ -1435,8 +500,7 @@
                     </div>
                     <button class="group flex-box mt-4 p-2 sm:p-3 md:p-5 rounded-xxl border border-black/20">
                         <div>
-                            <svg width="23" height="23" viewBox="0 0 29 29" fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                            <svg width="23" height="23" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg"
                                 class="group-hover:text-white max-h-4 sm:max-h-[unset]">
                                 <path
                                     d="M9.66634 26.5832C10.3337 26.5832 10.8747 26.0422 10.8747 25.3748C10.8747 24.7075 10.3337 24.1665 9.66634 24.1665C8.999 24.1665 8.45801 24.7075 8.45801 25.3748C8.45801 26.0422 8.999 26.5832 9.66634 26.5832Z"
@@ -1459,11 +523,12 @@
             </div>
         </div>
     </div>
+
     <div class="wrapper px-5 mt-lg">
         <div class="container max-w-container mx-auto">
             <div class="title flex-box mb-sm">
-                <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon"
-                        class="max-w-6"></div> <span class="label text-black">Shop by customer favourite
+                <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon" class="max-w-6">
+                </div> <span class="label text-black">Shop by customer favourite
                     Brands</span>
             </div>
             <div class="w-full block border border-black/20 rounded-brand p-6 md:px-12 md:py-10 mb-sm">
@@ -1497,11 +562,12 @@
             </div>
         </div>
     </div>
+
     <div class="wrapper px-5">
         <div class="container max-w-container mx-auto">
             <div class="title flex-box mb-sm">
-                <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon"
-                        class="max-w-6"></div> <span class="label text-black">Brands we love</span>
+                <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon" class="max-w-6">
+                </div> <span class="label text-black">Brands we love</span>
             </div>
             <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-5 m-auto">
                 <a href="#!"
@@ -1517,6 +583,7 @@
             </div>
         </div>
     </div>
+
     <div class="wrapper px-5 mt-lg">
         <div class="container max-w-container mx-auto">
             <div class="flex justify-between items-center mb-sm">
@@ -1527,11 +594,10 @@
                 <button class="group flex-box py-5 px-6 rounded-xxl border border-black/20 hover:bg-black">
                     <span class="addcart group-hover:text-white">View all</span>
                     <span class="max-w-icon">
-                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+                        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
                             class="max-w-5 md:max-w-[unset] max-h-(--max-h-arrow) object-contain group-hover:text-white">
-                            <path d="M13.5 27L22.5 18L13.5 9" stroke="currentColor" stroke-width="3"
-                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M13.5 27L22.5 18L13.5 9" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                stroke-linejoin="round" />
                         </svg>
                     </span>
                 </button>
@@ -1553,8 +619,7 @@
                     </div>
                     <button class="group flex-box mt-4 p-2 sm:p-3 md:p-5 rounded-xxl border border-black/20">
                         <div>
-                            <svg width="23" height="23" viewBox="0 0 29 29" fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                            <svg width="23" height="23" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg"
                                 class="group-hover:text-white max-h-4 sm:max-h-[unset]">
                                 <path
                                     d="M9.66634 26.5832C10.3337 26.5832 10.8747 26.0422 10.8747 25.3748C10.8747 24.7075 10.3337 24.1665 9.66634 24.1665C8.999 24.1665 8.45801 24.7075 8.45801 25.3748C8.45801 26.0422 8.999 26.5832 9.66634 26.5832Z"
@@ -1589,8 +654,7 @@
                     </div>
                     <button class="group flex-box mt-4 p-2 sm:p-3 md:p-5 rounded-xxl border border-black/20">
                         <div>
-                            <svg width="23" height="23" viewBox="0 0 29 29" fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                            <svg width="23" height="23" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg"
                                 class="group-hover:text-white max-h-4 sm:max-h-[unset]">
                                 <path
                                     d="M9.66634 26.5832C10.3337 26.5832 10.8747 26.0422 10.8747 25.3748C10.8747 24.7075 10.3337 24.1665 9.66634 24.1665C8.999 24.1665 8.45801 24.7075 8.45801 25.3748C8.45801 26.0422 8.999 26.5832 9.66634 26.5832Z"
@@ -1626,8 +690,7 @@
                     </div>
                     <button class="group flex-box mt-4 p-2 sm:p-3 md:p-5 rounded-xxl border border-black/20">
                         <div>
-                            <svg width="23" height="23" viewBox="0 0 29 29" fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
+                            <svg width="23" height="23" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg"
                                 class="group-hover:text-white max-h-4 sm:max-h-[unset]">
                                 <path
                                     d="M9.66634 26.5832C10.3337 26.5832 10.8747 26.0422 10.8747 25.3748C10.8747 24.7075 10.3337 24.1665 9.66634 24.1665C8.999 24.1665 8.45801 24.7075 8.45801 25.3748C8.45801 26.0422 8.999 26.5832 9.66634 26.5832Z"
@@ -1650,6 +713,7 @@
             </div>
         </div>
     </div>
+
     <div class="wrapper px-5 mt-lg">
         <div class="container max-w-container mx-auto">
             <div class="relative w-full block border border-black/30 rounded-block p-5 mb-sm overflow-hidden">
@@ -1674,6 +738,7 @@
             </div>
         </div>
     </div>
+
     <div class="wrapper px-5 mt-lg">
         <div class="container max-w-container mx-auto">
             <div
@@ -1701,7 +766,7 @@
         <script src="{{ asset('js/slick.min.js') }}"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('.slider').slick({
                     slidesToShow: 7,
                     slidesToScroll: 7,
@@ -1720,37 +785,37 @@
                     prevArrow: '<button type="button" class="slick-prev hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>',
                     nextArrow: '<button type="button" class="slick-next"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.1875 12.375L10.3125 8.25L6.1875 4.125" stroke="white" stroke-width="1.375" stroke-linecap="round" stroke-linejoin="round"/></svg></button>',
                     responsive: [{
-                            breakpoint: 1536,
-                            settings: {
-                                slidesToShow: 7,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 1024,
-                            settings: {
-                                slidesToShow: 4,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 768,
-                            settings: {
-                                slidesToShow: 3,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 480,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            }
+                        breakpoint: 1536,
+                        settings: {
+                            slidesToShow: 7,
+                            slidesToScroll: 1
                         }
+                    },
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 4,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    }
                     ]
                 });
 
-                $('.slider').on('afterChange', function(event, slick, currentSlide) {
+                $('.slider').on('afterChange', function (event, slick, currentSlide) {
                     if (currentSlide > 0) {
                         $('.slick-prev').removeClass('hidden');
                     } else {

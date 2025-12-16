@@ -34,6 +34,15 @@ class AdminController extends Controller
     }
 
 
+    public function showCustomerLoginForm()
+    {
+        if(Auth::guard('web')->check()){
+            return redirect()->route('home');
+        }
+        return view('#');
+    }
+
+
     public function login(Request $request)
     {
         // Prevent mismatch portal access

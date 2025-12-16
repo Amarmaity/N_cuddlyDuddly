@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\{
     CustomerController,
     SellerController,
     PayoutController,
-    WebhookController,
     ProductController,
     BrandController,
     InventoryController,
@@ -38,6 +37,7 @@ use App\Http\Controllers\Seller\{
     SellerSupportController,
     SellerProfileController
 };
+use App\Http\Controllers\website\LandingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +45,8 @@ use App\Http\Controllers\Seller\{
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', fn() => view('website.index'));
+// Route::get('/', fn() => view('website.index'));
+Route::get('/', [LandingController::class, 'home'])->name('home');
 
 /*
 |--------------------------------------------------------------------------
