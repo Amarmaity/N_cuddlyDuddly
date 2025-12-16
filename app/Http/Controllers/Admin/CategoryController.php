@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProductListResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Category;
@@ -10,7 +11,7 @@ use App\Models\MasterCategory;
 use App\Models\Products;
 use App\Models\SectionType;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\MasterCategorySection;
 
 
@@ -32,7 +33,7 @@ class CategoryController extends Controller
         return view('admin.categories.index', compact('departments'));
     }
 
-    
+
     // Fetch children for a node (lazy load)
     public function children(Request $request, $level, $id = null)
     {
@@ -93,7 +94,7 @@ class CategoryController extends Controller
         return response()->json([], 400);
     }
 
-    public function products(Request $request)
+    public function products(Request $request,$category)
     {
         $perPage = (int) $request->query('per_page', 20);
         $search = $request->query('search');
@@ -102,8 +103,9 @@ class CategoryController extends Controller
         $query = Products::query()
             ->join('product_category_section as pcs', 'pcs.product_id', '=', 'products.id')
             ->join('master_category_sections as mcs', 'mcs.id', '=', 'pcs.master_category_section_id')
+            ->where('mcs.master_category_id', $category)
             ->select('products.*')
-            ->distinct('products.id');  
+            ->distinct('products.id');
 
         // 🧩 Apply chain filter
         if ($chainType === 'department') {
@@ -140,10 +142,14 @@ class CategoryController extends Controller
         // 📄 Pagination
         $products = $query->paginate($perPage)->withQueryString();
 
-        return response()->json($products);
+        // return response()->json($products);
+        if (Auth::guard('admin')->check()) {
+            return response()->json($products);
+        }
+        return ProductListResource::collection($products);
     }
 
-    
+
 
     public function update(Request $request, $id)
     {

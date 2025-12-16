@@ -59,7 +59,7 @@
                                                         @foreach (collect($categories)->unique('id') as $category) {{-- Ensure unique
                                                             categories --}}
                                                             <li>
-                                                                <a href="{{ route('admin.category-explorer.products') }}"
+                                                                <a href="{{ route('website.category.products', ['category' => $category]) }}"
                                                                     class="inline-flex gap-4">
                                                                     <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
                                                                         class="max-w-icon" alt="">

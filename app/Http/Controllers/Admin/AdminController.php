@@ -37,7 +37,7 @@ class AdminController extends Controller
     public function showCustomerLoginForm()
     {
         if(Auth::guard('web')->check()){
-            return redirect()->route('home');
+            return redirect()->route('website.home');
         }
         return view('#');
     }

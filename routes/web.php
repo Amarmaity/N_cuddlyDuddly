@@ -39,14 +39,6 @@ use App\Http\Controllers\Seller\{
 };
 use App\Http\Controllers\website\LandingController;
 
-/*
-|--------------------------------------------------------------------------
-| Public Routes
-|--------------------------------------------------------------------------
-*/
-
-// Route::get('/', fn() => view('website.index'));
-Route::get('/', [LandingController::class, 'home'])->name('home');
 
 /*
 |--------------------------------------------------------------------------
@@ -226,3 +218,11 @@ Route::prefix('seller')->middleware('seller.auth')->group(function () {
     Route::get('support/poll/{ticket}', [SellerSupportController::class, 'poll'])->name('seller.support.poll');
     Route::post('support/reply', [SellerSupportController::class, 'sendReply'])->name('seller.support.reply');
 });
+
+
+
+Route::name('website.')->group(function () {
+    Route::get('/', [LandingController::class, 'home'])->name('home');
+    Route::get('/categories/{category}/products', [CategoryController::class, 'products'])->name('category.products');
+});
+
