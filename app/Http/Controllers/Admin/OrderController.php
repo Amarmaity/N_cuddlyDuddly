@@ -61,78 +61,11 @@ class OrderController extends Controller
                 break;
         }
 
-        $orders = $query->paginate(15);
+        $orders = $query->paginate(20);
 
         $customers = User::has('orders')->get(['id', 'first_name', 'last_name']);
         return view('admin.orders.index', compact('orders', 'customers'));
     }
-
-    // public function index(Request $request)
-    // {
-    //     $query = Order::with(['user', 'shippingAddress']);
-
-    //     // 🧑‍💼 Restrict sellers to only their own orders
-    //     if (Auth::guard('seller')->check()) {
-    //         $sellerId = Auth::guard('seller')->id();
-
-    //         $query->whereHas('items.product', function ($q) use ($sellerId) {
-    //             $q->where('seller_id', $sellerId);
-    //         });
-    //     }
-
-    //     // 🔍 Search filter (by order number or customer name)
-    //     if ($search = $request->input('search')) {
-    //         $query->where(function ($q) use ($search) {
-    //             $q->where('order_number', 'like', "%{$search}%")
-    //                 ->orWhereHas('user', function ($u) use ($search) {
-    //                     $u->where('name', 'like', "%{$search}%")
-    //                         ->orWhere('email', 'like', "%{$search}%");
-    //                 });
-    //         });
-    //     }
-
-    //     // 💳 Payment status filter
-    //     if ($paymentStatus = $request->input('payment_status')) {
-    //         $query->where('payment_status', $paymentStatus);
-    //     }
-
-    //     // 🚚 Order status filter
-    //     if ($orderStatus = $request->input('order_status')) {
-    //         $query->where('order_status', $orderStatus);
-    //     }
-
-    //     // 👤 Filter by customer (only for admins)
-    //     if (!Auth::guard('seller')->check() && $userId = $request->input('user_id')) {
-    //         $query->where('user_id', $userId);
-    //     }
-
-    //     // 🕓 Sorting
-    //     switch ($request->input('sort', 'latest')) {
-    //         case 'oldest':
-    //             $query->orderBy('created_at', 'asc');
-    //             break;
-    //         case 'amount_high_low':
-    //             $query->orderBy('total_amount', 'desc');
-    //             break;
-    //         case 'amount_low_high':
-    //             $query->orderBy('total_amount', 'asc');
-    //             break;
-    //         default:
-    //             $query->orderBy('created_at', 'desc');
-    //             break;
-    //     }
-
-    //     $orders = $query->paginate(15);
-
-    //     // 👥 Customers dropdown only for Admins
-    //     $customers = [];
-    //     if (!Auth::guard('seller')->check()) {
-    //         $customers = User::has('orders')->get(['id', 'first_name', 'last_name']);
-    //     }
-
-    //     return view('admin.orders.index', compact('orders', 'customers'));
-    // }
-
 
     // show method (update to eager-load shipment)
     public function show($id)

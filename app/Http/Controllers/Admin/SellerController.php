@@ -12,11 +12,6 @@ use App\Mail\SellerKycStatusMail;
 class SellerController extends Controller
 {
 
-    public function AllSellers()
-    {
-        echo 'under develop';
-    }
-
     public function index(Request $request)
     {
         $query = Sellers::query();
@@ -59,66 +54,6 @@ class SellerController extends Controller
     {
         return view('admin.sellers.create');
     }
-
-    // public function store(Request $request)
-    // {
-    //     try{
-
-    //         $request->validate([
-    //         'name'              => 'required|string|regex:/^[A-Za-z ]+$/|max:255',
-    //         'contact_person'    => 'required|string|max:255',
-    //         'email'             => 'required|email|unique:sellers,email',
-    //         'phone'             => 'required|digits:10|unique:sellers,phone',
-    //         'address'           => 'nullable|string|max:500',
-    //         'city'              => 'nullable|string|max:255',
-    //         'state'             => 'nullable|string|max:255',
-    //         'country'           => 'nullable|string|max:255',
-    //         'postal_code'       => 'nullable|string|max:20',
-    //         // 'gst_number'        =>  ['nullable', new \App\Rules\ValidGSTIN],
-    //         // 'pan_number'        =>  ['nullable', new \App\Rules\ValidPAN],
-    //         'gst_number'           => 'nullable|string|max:50',
-    //         'pan_number'       => 'nullable|string|max:20',
-    //         'bank_account_number' => 'nullable|string|max:50',
-    //         'bank_name'         => 'nullable|string|max:255',
-    //         'ifsc_code'         => 'nullable|string|max:50',
-    //         'upi_id'     => 'nullable|string|max:100',
-    //         'commission_rate'   => 'nullable|numeric|min:0|max:100',
-    //         'logo'              => 'nullable|file|image|mimes:jpg,jpeg,png,svg|max:2048',
-    //         'documents'   => 'nullable',
-    //         'documents.*'       => 'nullable|file|mimes:jpg,jpeg,png,pdf,txt|max:4096',
-    //         'is_active'         => 'nullable|boolean',
-    //     ]);
-
-    //     $data = $request->except(['logo', 'documents', 'is_active']);
-    //     // var_dump($data);exit;
-    //     $data['is_active'] = $request->has('is_active') ? 1 : 0;
-
-    //     if ($request->hasFile('logo')) {
-    //         $data['logo'] = $request->file('logo')->store('seller_docs', 'public');
-    //     }
-
-    //     if ($request->hasFile('documents')) {
-    //         $documentPaths = [];
-    //         foreach ($request->file('documents') as $doc) {
-    //             $documentPaths[] = $doc->store('seller_docs', 'public');
-    //         }
-    //         $data['documents'] = json_encode($documentPaths);
-    //     }
-    //     }catch(\Illuminate\Validation\ValidationException $e){
-
-    //         dd($e->errors());
-
-    //     }
-
-    //     $data['compliance_status'] = 'pending';
-
-    //     Sellers::create($data);
-
-    //     return redirect()->route('admin.sellers.index')
-    //         ->with('success', 'Seller created successfully.');
-    // }
-
-
 
     public function store(Request $request)
     {

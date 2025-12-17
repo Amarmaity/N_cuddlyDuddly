@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProductListResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Category;
@@ -11,12 +10,42 @@ use App\Models\MasterCategory;
 use App\Models\Products;
 use App\Models\SectionType;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\MasterCategorySection;
 
 
 class CategoryController extends Controller
 {
+
+    // public function index()
+    // {
+    //     $departments = Department::paginate(2);
+
+    //     $departments->load('masterCategories.sectionTypes');
+
+    //     $departments->each(
+    //         fn($department) =>
+    //         $department->masterCategories->each(
+    //             fn($mc) =>
+    //             $mc->sectionTypes->each(function ($st) use ($mc) {
+
+    //                 $categories = DB::table('master_category_sections')
+    //                     ->join('categories', 'categories.id', '=', 'master_category_sections.category_id')
+    //                     ->where('master_category_sections.master_category_id', $mc->id)
+    //                     ->where('master_category_sections.section_type_id', $st->id)
+    //                     ->select('categories.*')
+    //                     ->orderBy('categories.name')
+    //                     ->get()
+    //                     ->map(fn($c) => new Category((array)$c));
+
+    //                 $st->setRelation('categories', $categories);
+    //             })
+    //         )
+    //     );
+
+    //     return view('admin.categories.index', compact('departments'));
+    // }
+
     public function index()
     {
         // load top-level departments that exist in master_category_sections
@@ -31,7 +60,6 @@ class CategoryController extends Controller
 
         return view('admin.categories.index', compact('departments'));
     }
-
     // Fetch children for a node (lazy load)
     public function children(Request $request, $level, $id = null)
     {
@@ -92,89 +120,19 @@ class CategoryController extends Controller
         return response()->json([], 400);
     }
 
-    // public function products(Request $request,$category)
-    // {
-    //     $perPage = (int) $request->query('per_page', 20);
-    //     $search = $request->query('search');
-    //     $chainType = $request->query('chain_type');
-
-    //     $query = Products::query()
-    //         ->join('product_category_section as pcs', 'pcs.product_id', '=', 'products.id')
-    //         ->join('master_category_sections as mcs', 'mcs.id', '=', 'pcs.master_category_section_id')
-    //         ->where('mcs.master_category_id', $category)
-    //         ->select('products.*')
-    //         ->distinct('products.id');   // 🔥 FIX: avoid GROUP BY issues
-
-    //     // 🧩 Apply chain filter
-    //     if ($chainType === 'department') {
-    //         $query->where('mcs.department_id', $request->query('dept'));
-    //     } elseif ($chainType === 'master_category') {
-    //         $query->where('mcs.master_category_id', $request->query('mc'))
-    //             ->where('mcs.department_id', $request->query('dept'));
-    //     } elseif ($chainType === 'section_type') {
-    //         $query->where('mcs.section_type_id', $request->query('st'))
-    //             ->where('mcs.master_category_id', $request->query('mc'))
-    //             ->where('mcs.department_id', $request->query('dept'));
-    //     } elseif ($chainType === 'category') {
-    //         $query->where('pcs.master_category_section_id', $request->query('mcs_id'));
-    //     }
-
-    //     // 🔍 Search filter
-    //     if ($search) {
-    //         $query->where(function ($q) use ($search) {
-    //             $q->where('products.name', 'like', "%{$search}%")
-    //                 ->orWhere('products.description', 'like', "%{$search}%");
-    //         });
-    //     }
-
-    //     // 📌 Sorting
-    //     if ($request->query('sort') === 'price_asc') {
-    //         $query->orderBy('products.price', 'asc');
-    //     } else {
-    //         $query->orderBy('products.created_at', 'desc');
-    //     }
-
-    //     // 🐎 Eager load
-    //     $query->with(['images', 'seller']);
-
-    //     // 📄 Pagination
-    //     $products = $query->paginate($perPage)->withQueryString();
-
-    //     return response()->json($products);
-    // }
-
-
-
-    public function products(Request $request, $category = null)
+    public function products(Request $request)
     {
-        $perPage   = (int) $request->query('per_page', 20);
-        $search    = $request->query('search');
+        $perPage = (int) $request->query('per_page', 20);
+        $search = $request->query('search');
         $chainType = $request->query('chain_type');
 
         $query = Products::query()
             ->join('product_category_section as pcs', 'pcs.product_id', '=', 'products.id')
             ->join('master_category_sections as mcs', 'mcs.id', '=', 'pcs.master_category_section_id')
             ->select('products.*')
-            ->distinct('products.id')
+            ->distinct('products.id');   // 🔥 FIX: avoid GROUP BY issues
 
-            // ✅ IMPORTANT FIX (YOU FORGOT THIS)
-            ->where('products.is_approved', 1)
-            ->where('products.featured', 1);
-
-        /*
-    |--------------------------------------------------------------------------
-    | Master Category Filter (ONLY if category is passed)
-    |--------------------------------------------------------------------------
-    */
-        if (!empty($category)) {
-            $query->where('mcs.master_category_id', $category);
-        }
-
-        /*
-    |--------------------------------------------------------------------------
-    | Chain-based filters (Admin Explorer)
-    |--------------------------------------------------------------------------
-    */
+        // 🧩 Apply chain filter
         if ($chainType === 'department') {
             $query->where('mcs.department_id', $request->query('dept'));
         } elseif ($chainType === 'master_category') {
@@ -188,11 +146,7 @@ class CategoryController extends Controller
             $query->where('pcs.master_category_section_id', $request->query('mcs_id'));
         }
 
-        /*
-    |--------------------------------------------------------------------------
-    | Search
-    |--------------------------------------------------------------------------
-    */
+        // 🔍 Search filter
         if ($search) {
             $query->where(function ($q) use ($search) {
                 $q->where('products.name', 'like', "%{$search}%")
@@ -200,38 +154,21 @@ class CategoryController extends Controller
             });
         }
 
-        /*
-    |--------------------------------------------------------------------------
-    | Sorting
-    |--------------------------------------------------------------------------
-    */
+        // 📌 Sorting
         if ($request->query('sort') === 'price_asc') {
             $query->orderBy('products.price', 'asc');
         } else {
             $query->orderBy('products.created_at', 'desc');
         }
 
-        /*
-    |--------------------------------------------------------------------------
-    | Eager Load
-    |--------------------------------------------------------------------------
-    */
+        // 🐎 Eager load
         $query->with(['images', 'seller']);
 
-        /*
-    |--------------------------------------------------------------------------
-    | Pagination & Response
-    |--------------------------------------------------------------------------
-    */
+        // 📄 Pagination
         $products = $query->paginate($perPage)->withQueryString();
 
-        if (Auth::guard('admin')->check()) {
-            return response()->json($products);
-        }
-
-        return ProductListResource::collection($products);
+        return response()->json($products);
     }
-
 
     public function update(Request $request, $id)
     {

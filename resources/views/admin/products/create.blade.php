@@ -114,7 +114,7 @@
                         <!-- 🧑‍💼 Seller -->
                         <div class="col-md-4">
                             <label class="form-label fw-semibold">Seller</label>
-                            <select name="seller_id" class="form-select" required>
+                            <select name="seller_id" class="form-select seller-select" required>
                                 <option value="">Select Seller</option>
                                 @foreach ($sellers as $seller)
                                     <option value="{{ $seller->id }}"
@@ -250,3 +250,24 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{{ asset('js/product-form.js') }}"></script>
 @endpush
+
+@push('scripts')
+<script>
+$(document).ready(function() {
+    $('.seller-select').select2({
+        placeholder: "Select Seller",
+        allowClear: true,
+        dropdownAutoWidth: true,
+        width: '100%',
+        minimumResultsForSearch: 0  // This forces search box to always appear
+    });
+
+    // Limit the height of the dropdown to show ~10 options
+    $('.seller-select').on('select2:open', function() {
+        $('.select2-results__options').css('max-height', '200px');
+    });
+});
+</script>
+@endpush
+
+

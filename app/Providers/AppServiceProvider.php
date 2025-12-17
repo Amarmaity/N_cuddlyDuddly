@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +16,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+         // ✅ Enable Bootstrap 5 pagination
+        Paginator::useBootstrapFive();
+
         Blade::if('canAccess', function ($permission) {
             // $user = Auth::guard('admin')->user() ?? Auth::guard('seller')->user();
             $user = Auth::guard('admin')->user();

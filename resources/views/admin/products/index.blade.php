@@ -123,6 +123,7 @@
             }
         </style>
     @endpush
+    
     <div class="container-fluid py-0 settings-wrapper products-page">
 
         <div class="settings-right">
@@ -367,12 +368,18 @@
                             </table>
                         </div>
                     </div>
-
-                    @if ($products && $products->hasPages())
-                        <div class="card-footer py-2">
-                            {{ $products->links('pagination::bootstrap-5') }}
+                   @if ($products->hasPages())
+                    <div class="card-footer py-2 d-flex justify-content-between align-items-center">
+                        <div class="text-muted">
+                           
                         </div>
-                    @endif
+
+                        <div>
+                            {{ $products->withQueryString()->links() }}
+                        </div>
+                    </div>
+                @endif
+
                 </div>
 
                 {{-- keep the original toast container (UX unchanged) --}}
