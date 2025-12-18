@@ -278,6 +278,8 @@
 
 @source "./footer.html";
 
+@source "./homepage.php";
+
 @theme {
   --max-w-icon: 20px;
   --max-footer-icon: 45px;
@@ -389,7 +391,7 @@
 }
 
 @layer utilities {
-
+  
   .slide {
     @apply text-center!;
   }
@@ -469,6 +471,37 @@
 
 /* 3️⃣ Components (reusable patterns) */
 @layer components {
+  /* collapse bar new */
+  .accordion-item {
+    @apply border-b border-[#e5e7eb];
+  }
+  
+  .accordion-header {
+    @apply w-full py-4 px-6 flex justify-between items-center bg-transparent border-0 cursor-pointer;
+  }
+  
+  .accordion-header h4 {
+    @apply font-sans font-bold text-[18px] leading-tight tracking-1 text-[#1f2937];
+  }
+  
+  .arrow {
+    @apply text-[18px] transition-transform duration-300 ease-in-out;
+  }
+  
+  .accordion-item.active .arrow {
+    @apply rotate-180;
+  }
+  
+  /* Collapsible content */
+  .accordion-content {
+    @apply max-h-0 overflow-hidden transition-[max-height] duration-350 ease-in-out;
+  }
+  .accordion-item.active .accordion-content {
+    @apply max-h-[250px] overflow-y-scroll;
+  }
+  .slide .dropdown{
+    @apply w-full lg:w-[780px];
+  }
   /* dashboard */
   .seller-table tr > th {
     @apply pt-5 pb-2 text-left font-sans font-medium text-sm leading-tight tracking-1 text-[#A3AED0];
@@ -505,9 +538,11 @@
   .popup img {
     @apply object-contain max-w-5;
   }
+  
   .tab-btn {
     @apply font-sans font-medium text-sm sm:text-base leading-tight tracking-1 text-black/50;
   }
+  
   #dashboardnav-wrapper {
     @apply fixed left-0 top-0 bottom-0 h-screen  bg-white transform -translate-x-[100%] lg:static lg:translate-x-[unset] lg:h-[unset] transition-transform duration-300 ease-in-out;
   }
@@ -569,14 +604,16 @@
   }
   /* dashboard-end */
   /* footer new */
-  .footer-link{
+  .footer-link {
     @apply font-sans font-medium text-base lg:text-xl leading-tight tracking-1 text-black/43;
   }
-  .footer-para{
+  
+  .footer-para {
     @apply font-sans font-semibold text-center md:text-left text-base leading-tight tracking-1 text-white;
   }
-  .footer-span{
-     @apply font-sans font-medium text-center md:text-left text-sm md:text-base leading-tight tracking-1 text-[#D2D2D2];
+  
+  .footer-span {
+    @apply font-sans font-medium text-center md:text-left text-sm md:text-base leading-tight tracking-1 text-[#D2D2D2];
   }
   /* footer end */
   .megadown-items:last-child {

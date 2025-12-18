@@ -24,4 +24,9 @@ class Department extends Model
             'master_category_id'    // FK on pivot
         )->distinct();
     }
+
+    public function masterCategorySections()
+    {
+        return $this->hasMany(MasterCategorySection::class);
+    }
 }

@@ -47,4 +47,9 @@ class MasterCategory extends Model
             'category_id'
         )->withPivot(['section_type_id', 'department_id'])->distinct();
     }
+
+    public function sections()
+    {
+        return $this->hasMany(MasterCategorySection::class, 'master_category_id');
+    }
 }

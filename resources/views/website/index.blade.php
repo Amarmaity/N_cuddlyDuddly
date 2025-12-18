@@ -15,65 +15,56 @@
                         <div class="slide">
                             <div class="group relative inline-block">
                                 <button class="menu-btn">
-                                    {{ $department->name }}
+                                    <h4>{{ $department['name'] }}</h4>
                                 </button>
                                 <div
-                                    class="dropdown hidden group-hover:grid grid-cols-3 absolute left-0 min-w-xl mt-2 p-5 gap-8 bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
+                                    class="dropdown hidden group-hover:block absolute left-0 min-w-xl bg-white rounded-block shadow-[0_20px_50px_rgba(0,0,0,0.15)]">
 
-                                    {{-- Loop through unique master categories --}}
-                                    @foreach ($department->masterCategories->unique('master_category_id') as $masterCategory)
+                                    @foreach ($department['master_categories'] as $masterCategory)
 
-                                        @php
-                                            $grouped = [];
-                                        @endphp
+                                        <div x-data="{ open: false }" class="border-b last:border-b-0">
+                                            <div class="accordion-item">
+                                                <!-- Master Category Header -->
+                                                <button @click="open = !open"
+                                                    class="w-full  accordion-header text-left px-5 py-3 flex justify-between items-center hover:bg-gray-100">
+                                                    <h4 class="text-lg font-semibold text-gray-800">
+                                                        {{ strtoupper($masterCategory['name']) }}
+                                                    </h4>
+                                                    <span class="arrow">⌄</span>
+                                                </button>
 
-                                        @foreach ($masterCategory->categories as $category)
-                                            @php
-                                                $sectionType = $masterCategory->sectionTypes
-                                                    ->firstWhere('id', $category->pivot->section_type_id);
-                                            @endphp
+                                                <!-- Collapsible Content -->
+                                                <div x-show="open" x-collapse class="accordion-content">
+                                                    <div class="grid grid-cols-3 gap-8 px-5 py-4">
 
-                                            @if ($sectionType)
-                                                @php
-                                                    $grouped[$sectionType->name][] = $category;
-                                                @endphp
-                                            @endif
-                                        @endforeach
+                                                        @foreach ($masterCategory['section_types'] as $sectionType)
+                                                            @if (!empty($sectionType['categories']))
 
-                                        {{-- Make categories unique per section type --}}
-                                        @foreach ($grouped as $sectionName => $categories)
-                                            @php
-                                                $grouped[$sectionName] = collect($categories)->unique('id');
-                                            @endphp
-                                        @endforeach
+                                                                <div class="flex flex-col gap-3">
+                                                                    <span class="font-medium text-gray-700">
+                                                                        {{ strtoupper($sectionType['name']) }}
+                                                                    </span>
 
-                                        {{-- Render grouped data --}}
-                                        @foreach ($grouped as $sectionName => $categories)
-                                            @if(count($categories)) {{-- Only render if there are categories --}}
-                                                <div class="flex flex-col gap-4">
-                                                    <span class="dropdown-title">
-                                                        {{ strtoupper($sectionName) }}
-                                                    </span>
-
-                                                    <ul class="dropdown-list">
-                                                        @foreach (collect($categories)->unique('id') as $category) {{-- Ensure unique
-                                                            categories --}}
-                                                            <li>
-                                                                <a href="{{ route('website.category.products', ['category' => $category]) }}"
-                                                                    class="inline-flex gap-4">
-                                                                    <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
-                                                                        class="max-w-icon" alt="">
-                                                                    <span>{{ $category->name }}</span>
-                                                                </a>
-                                                            </li>
+                                                                    <ul class="space-y-2">
+                                                                        @foreach ($sectionType['categories'] as $category)
+                                                                            <li>
+                                                                                <a href="{{ route('website.category.products', ['category' => $category['id']]) }}"
+                                                                                    class="inline-flex gap-3 items-center hover:text-primary">
+                                                                                    <img src="{{ asset('storage/WebsiteImages/home/icon1.png') }}"
+                                                                                        class="max-w-icon" alt="">
+                                                                                    <span>{{ $category['name'] }}</span>
+                                                                                </a>
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </div>
+                                                            @endif
                                                         @endforeach
-                                                    </ul>
+                                                    </div>
                                                 </div>
-                                            @endif
-                                        @endforeach
-
+                                            </div>
+                                        </div>
                                     @endforeach
-
                                 </div>
                             </div>
                         </div>
@@ -822,6 +813,41 @@
                         $('.slick-prev').addClass('hidden');
                     }
                 });
+            });
+
+
+            const isTouchDevice =
+                window.matchMedia('(hover: none)').matches ||
+                window.matchMedia('(pointer: coarse)').matches;
+
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                const item = header.closest('.accordion-item');
+
+                // 📱 Mobile / Touch → Click
+                if (isTouchDevice) {
+                    header.addEventListener('click', () => {
+                        const activeItem = document.querySelector('.accordion-item.active');
+
+                        if (activeItem && activeItem !== item) {
+                            activeItem.classList.remove('active');
+                        }
+
+                        item.classList.toggle('active');
+                    });
+                }
+
+                // 🖥 Desktop → Hover
+                else {
+                    header.addEventListener('mouseenter', () => {
+                        const activeItem = document.querySelector('.accordion-item.active');
+
+                        if (activeItem && activeItem !== item) {
+                            activeItem.classList.remove('active');
+                        }
+
+                        item.classList.add('active');
+                    });
+                }
             });
         </script>
     @endpush

@@ -224,5 +224,6 @@ Route::prefix('seller')->middleware('seller.auth')->group(function () {
 Route::name('website.')->group(function () {
     Route::get('/', [LandingController::class, 'home'])->name('home');
     Route::get('/categories/{category}/products', [CategoryController::class, 'products'])->name('category.products');
+    
 });
 
