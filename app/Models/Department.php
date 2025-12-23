@@ -29,4 +29,6 @@ class Department extends Model
     {
         return $this->hasMany(MasterCategorySection::class);
     }
+
+    
 }

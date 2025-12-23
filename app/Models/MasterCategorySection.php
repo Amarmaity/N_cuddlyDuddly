@@ -12,7 +12,7 @@ class MasterCategorySection extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'department_id',       // add this if it's on the pivot table
+        'department_id',       
         'master_category_id',
         'section_type_id',
         'category_id',

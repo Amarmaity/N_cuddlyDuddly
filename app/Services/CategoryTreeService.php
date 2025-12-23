@@ -5,21 +5,24 @@ namespace App\Services;
 use App\Models\Department;
 use App\Models\MasterCategorySection;
 
+
 class CategoryTreeService
 {
     public static function build(): array
     {
         $departments = Department::where('status', 1)->get();
-
+        // dd($departments);
         return $departments->map(function ($dept) {
-
+            
             $sections = MasterCategorySection::with([
                 'masterCategory' => fn ($q) => $q->where('status', 1),
                 'sectionType', // ✅ no status column here
                 'category' => fn ($q) => $q->where('status', 1),
-            ])
-            ->where('department_id', $dept->id)
-            ->get();
+                ])
+                ->whereIn('department_id', [$dept->id])
+                // dd($sections->toSql());
+                ->get();
+
 
             $masterCategories = $sections
                 ->groupBy('master_category_id')

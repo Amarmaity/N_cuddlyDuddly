@@ -37,7 +37,10 @@ use App\Http\Controllers\Seller\{
     SellerSupportController,
     SellerProfileController
 };
-use App\Http\Controllers\website\LandingController;
+use App\Http\Controllers\website\{
+    LandingController,
+    CategoryController as WebsiteCategoryController
+};
 
 
 /*
@@ -223,7 +226,6 @@ Route::prefix('seller')->middleware('seller.auth')->group(function () {
 
 Route::name('website.')->group(function () {
     Route::get('/', [LandingController::class, 'home'])->name('home');
-    Route::get('/categories/{category}/products', [CategoryController::class, 'products'])->name('category.products');
-    
+    Route::get('/categories/{category}/products', [WebsiteCategoryController::class, 'products'])->name('category.products'); 
 });
 

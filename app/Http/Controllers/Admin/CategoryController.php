@@ -90,7 +90,6 @@ class CategoryController extends Controller
 
             return response()->json($rows);
         }
-
         return response()->json([], 400);
     }
 
@@ -144,97 +143,6 @@ class CategoryController extends Controller
 
     //     return response()->json($products);
     // }
-
-
-
-    // public function products(Request $request, $category = null)
-    // {
-    //     $perPage   = (int) $request->query('per_page', 20);
-    //     $search    = $request->query('search');
-    //     $chainType = $request->query('chain_type');
-
-    //     $query = Products::query()
-    //         ->join('product_category_section as pcs', 'pcs.product_id', '=', 'products.id')
-    //         ->join('master_category_sections as mcs', 'mcs.id', '=', 'pcs.master_category_section_id')
-    //         ->select('products.*')
-    //         ->distinct('products.id')
-
-    //         // ✅ IMPORTANT FIX (YOU FORGOT THIS)
-    //         ->where('products.is_approved', 1)
-    //         ->where('products.featured', 1);
-
-    //     /*
-    // |--------------------------------------------------------------------------
-    // | Master Category Filter (ONLY if category is passed)
-    // |--------------------------------------------------------------------------
-    // */
-    //     if (!empty($category)) {
-    //         $query->where('mcs.master_category_id', $category);
-    //     }
-
-    //     /*
-    // |--------------------------------------------------------------------------
-    // | Chain-based filters (Admin Explorer)
-    // |--------------------------------------------------------------------------
-    // */
-    //     if ($chainType === 'department') {
-    //         $query->where('mcs.department_id', $request->query('dept'));
-    //     } elseif ($chainType === 'master_category') {
-    //         $query->where('mcs.master_category_id', $request->query('mc'))
-    //             ->where('mcs.department_id', $request->query('dept'));
-    //     } elseif ($chainType === 'section_type') {
-    //         $query->where('mcs.section_type_id', $request->query('st'))
-    //             ->where('mcs.master_category_id', $request->query('mc'))
-    //             ->where('mcs.department_id', $request->query('dept'));
-    //     } elseif ($chainType === 'category') {
-    //         $query->where('pcs.master_category_section_id', $request->query('mcs_id'));
-    //     }
-
-    //     /*
-    // |--------------------------------------------------------------------------
-    // | Search
-    // |--------------------------------------------------------------------------
-    // */
-    //     if ($search) {
-    //         $query->where(function ($q) use ($search) {
-    //             $q->where('products.name', 'like', "%{$search}%")
-    //                 ->orWhere('products.description', 'like', "%{$search}%");
-    //         });
-    //     }
-
-    //     /*
-    // |--------------------------------------------------------------------------
-    // | Sorting
-    // |--------------------------------------------------------------------------
-    // */
-    //     if ($request->query('sort') === 'price_asc') {
-    //         $query->orderBy('products.price', 'asc');
-    //     } else {
-    //         $query->orderBy('products.created_at', 'desc');
-    //     }
-
-    //     /*
-    // |--------------------------------------------------------------------------
-    // | Eager Load
-    // |--------------------------------------------------------------------------
-    // */
-    //     $query->with(['images', 'seller']);
-
-    //     /*
-    // |--------------------------------------------------------------------------
-    // | Pagination & Response
-    // |--------------------------------------------------------------------------
-    // */
-    //     $products = $query->paginate($perPage)->withQueryString();
-
-    //     if (Auth::guard('admin')->check()) {
-    //         return response()->json($products);
-    //     }
-
-    //     return ProductListResource::collection($products);
-    // }
-
-
 
 
 
@@ -324,6 +232,10 @@ class CategoryController extends Controller
 
         return ProductListResource::collection($products);
     }
+
+
+
+
 
 
 
