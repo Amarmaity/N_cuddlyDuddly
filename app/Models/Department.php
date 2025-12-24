@@ -17,6 +17,7 @@ class Department extends Model
     {
         return $this->hasManyThrough(
             MasterCategory::class,
+
             MasterCategorySection::class,
             'department_id',        // FK on pivot
             'id',                   // PK on MasterCategory

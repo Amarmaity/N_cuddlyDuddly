@@ -79,4 +79,5 @@ class ProductCategorySection extends Model
             'department_id'
         );
     }
+
 }

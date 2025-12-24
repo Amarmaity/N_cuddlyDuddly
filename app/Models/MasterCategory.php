@@ -52,4 +52,13 @@ class MasterCategory extends Model
     {
         return $this->hasMany(MasterCategorySection::class, 'master_category_id');
     }
+
+    public function homeGroups()
+    {
+        return $this->belongsToMany(
+            HomeCategoryGroup::class,
+            'home_category_group_master_category'
+        )->using(HomeCategoryGroupMasterCategory::class)
+            ->withTimestamps();
+    }
 }

@@ -121,6 +121,8 @@
             class="absolute top-[61%] md:top-[54%] max-h-64">
     </div>
 
+
+
     <div class="w-full px-5 overflow-hidden mt-lg">
         <div class="container max-w-container mx-auto">
             <div class="relative w-full mb-10 rounded-block overflow-hidden">
@@ -166,18 +168,19 @@
         </div>
     </div>
 
+    {{-- Category --}}
     <div class="wrapper px-5 mt-lg">
         <div class="container max-w-container mx-auto">
             <div class="title flex-box mt-lg mb-sm">
                 <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon" class="max-w-6">
                 </div> <span class="label text-black">Shop by category</span>
             </div>
-
-            <div class="relative grid gap-4">
+            {{-- <div class="relative grid gap-4">
                 <div class="absolute -top-40 -right-[179px]"><img
                         src="{{ asset('storage/WebsiteImages/home/flowerpatter.png') }}" alt="flower design">
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
                     <div class="relative rounded-block overflow-hidden"><img
                             src="{{ asset('storage/WebsiteImages/home/pregnant-woman.png') }}" alt=""
                             class="h-400 transform transition-transform duration-300 hover:scale-110 cursor-pointer">
@@ -198,6 +201,7 @@
                             </span>
                         </a>
                     </div>
+
                     <div class="relative rounded-block overflow-hidden"><img
                             src="{{ asset('storage/WebsiteImages/home/categoryimg6.jpg') }}" alt=""
                             class="h-400 transform transition-transform duration-300 hover:scale-110 cursor-pointer">
@@ -219,7 +223,9 @@
                         </a>
                     </div>
                 </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+
                     <div class="relative h-81 rounded-block overflow-hidden"><img
                             src="{{ asset('storage/WebsiteImages/home/categoryimg5.jpg') }}" alt=""
                             class="transform transition-transform duration-300 hover:scale-110 cursor-pointer">
@@ -240,6 +246,7 @@
                             </span>
                         </a>
                     </div>
+
                     <div class="relative h-81 rounded-block overflow-hidden"><img
                             src="{{ asset('storage/WebsiteImages/home/categoryimg4.jpg') }}" alt=""
                             class="transform transition-transform duration-300 hover:scale-110 cursor-pointer">
@@ -259,6 +266,7 @@
                             </span>
                         </a>
                     </div>
+
                     <div class="relative h-81 rounded-block overflow-hidden"><img
                             src="{{ asset('storage/WebsiteImages/home/categoryimg3.jpg') }}" alt=""
                             class="transform transition-transform duration-300 hover:scale-110 cursor-pointer">
@@ -279,6 +287,7 @@
                             </span>
                         </a>
                     </div>
+
                     <div class="relative h-81 rounded-block overflow-hidden"><img
                             src="{{ asset('storage/WebsiteImages/home/categoryimg2.jpg') }}" alt=""
                             class="transform transition-transform duration-300 hover:scale-110 cursor-pointer">
@@ -300,9 +309,99 @@
                         </a>
                     </div>
                 </div>
+
+            </div> --}}
+            
+            @php
+                $groupImages = [
+                    0 => 'pregnant-woman.png',
+                    1 => 'categoryimg6.jpg',
+                    2 => 'categoryimg5.jpg',
+                    3 => 'categoryimg4.jpg',
+                    4 => 'categoryimg3.jpg',
+                    5 => 'categoryimg2.jpg',
+                ];
+
+                // ✅ ENSURE COLLECTION + RESET INDEX
+                $categoryGroups = $homeCategoryGroups->take(6)->values();
+            @endphp
+
+            <div class="relative grid gap-4">
+                <!-- Flower pattern -->
+                <div class="absolute -top-40 -right-[179px]">
+                    <img src="{{ asset('storage/WebsiteImages/home/flowerpatter.png') }}" alt="flower design">
+                </div>
+                <!-- ================= TOP 2 BIG CARDS ================= -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    @foreach($categoryGroups->take(2) as $index => $group)
+                        {{-- @dd($group) --}}
+                        <div class="relative rounded-block overflow-hidden">
+
+                            <img src="{{ asset('storage/WebsiteImages/home/' . ($groupImages[$index] ?? 'default.jpg')) }}"
+                                class="h-400 transform transition-transform duration-300 hover:scale-110 cursor-pointer"
+                                alt="{{ $group->title }}">
+
+                            <div class="absolute top-6 left-3.5 label-wrapper">
+                                <span class="label text-black">{{ $group->title }}</span>
+                            </div>
+
+                            <!-- Blur background -->
+                            <div class="absolute left-0 right-0 bottom-0 h-2/5 blur-div"></div>
+
+                            <!-- View collection -->
+                            <a href="{{ route('website.category.products', $group->slug) }}"
+                                class="group collection-btn flex-box gap-0 lg:pl-6">
+                                <span class="label text-black font-medium group-hover:text-white">View
+                                    collection</span><span>
+                                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="max-w-5 md:max-w-6 max-h-(--max-h-arrow) object-contain group-hover:text-white">
+                                        <path d="M13.5 27L22.5 18L13.5 9" stroke="currentColor" stroke-width="3"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </a>
+
+                        </div>
+                    @endforeach
+                </div>
+                <!-- ================= BOTTOM 4 SMALL CARDS ================= -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                    {{-- @foreach($homeCategoryGroups->skip(2)->take(4) as $index => $groups) --}}
+                    @foreach($categoryGroups->slice(2)->values() as $index => $group)
+                        @php $imgIndex = $index + 2; @endphp
+                        <div class="relative h-81 rounded-block overflow-hidden">
+                            <img src="{{ asset('storage/WebsiteImages/home/' . ($groupImages[$imgIndex] ?? 'default.jpg')) }}"
+                                class="transform transition-transform duration-300 hover:scale-110 cursor-pointer"
+                                alt="{{ $group->title }}">
+                            <div class="absolute top-6 w-full text-center">
+                                <span class="label label-wrapper text-black">
+                                    {{ $group->title }}
+                                </span>
+                            </div>
+                            <!-- Blur background -->
+                            <div class="absolute left-0 right-0 bottom-0 h-2/5 blur-div"></div>
+                            <!-- View collection button -->
+                            <a href="{{ route('website.category.products', $group->slug) }}"
+                                class="group w-[50px] h-[50px] md:w-[70px] md:h-[70px] absolute right-3.5 bottom-3.5 z-10 flex-box inline-flex p-6 bg-white/32 border border-black/22 rounded-full backdrop-blur hover:bg-black">
+                                <span>
+                                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="max-w-5 md:max-w-[unset] max-h-(--max-h-arrow) object-contain group-hover:text-white">
+                                        <path d="M13.5 27L22.5 18L13.5 9" stroke="currentColor" stroke-width="3"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
             </div>
+
         </div>
     </div>
+
+
 
     <div class="relative wrapper px-5">
         <div class="container relative z-10 max-w-container mx-auto">
