@@ -52,7 +52,11 @@ class MasterCategory extends Model
     {
         return $this->hasMany(MasterCategorySection::class, 'master_category_id');
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> officeDev
     public function homeGroups()
     {
         return $this->belongsToMany(

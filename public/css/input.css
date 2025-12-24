@@ -270,6 +270,8 @@
 
 @source "./welcome.blade.php";
 
+@source "./header.blade.php";
+
 @source "./dashboard.html";
 
 @source "./categories.html";
@@ -544,7 +546,7 @@
   }
   
   #dashboardnav-wrapper {
-    @apply fixed left-0 top-0 bottom-0 h-screen  bg-white transform -translate-x-[100%] lg:static lg:translate-x-[unset] lg:h-[unset] transition-transform duration-300 ease-in-out;
+    @apply fixed left-0 top-0 bottom-0 h-screen z-30  bg-white transform -translate-x-[100%] lg:static lg:translate-x-[unset] lg:h-[unset] transition-transform duration-300 ease-in-out;
   }
   
   #dashboardnav-wrapper.show {

@@ -1,0 +1,53 @@
+[90m= [39m[34;4mApp\Models\HomeCategoryGroup[39;24m {#6675
+    [34mid[39m: [35m1[39m,
+    [34mtitle[39m: "[32mFeatured[39m",
+    [34mslug[39m: "[32mfeatured[39m",
+    [34mdisplay_order[39m: [35m1[39m,
+    [34mstatus[39m: [35m1[39m,
+    [34mcreated_at[39m: "[32m2025-12-22 12:20:36[39m",
+    [34mupdated_at[39m: "[32m2025-12-22 12:20:36[39m",
+    [34mmasterCategories[39m: [34;4mIlluminate\Database\Eloquent\Collection[39;24m {#6787
+      [34mall[39m: [
+        [34;4mApp\Models\MasterCategory[39;24m {#6694
+          [34mid[39m: [35m1[39m,
+          [34mname[39m: "[32mBOY FASHION[39m",
+          [34mslug[39m: "[32mboy-fashion[39m",
+          [34mimage_url[39m: [36mnull[39m,
+          [34mstatus[39m: [35m1[39m,
+          [34mpivot[39m: [34;4mIlluminate\Database\Eloquent\Relations\Pivot[39;24m {#6692
+            [34mhome_category_group_id[39m: [35m1[39m,
+            [34mmaster_category_id[39m: [35m1[39m,
+            [34mcreated_at[39m: "[32m2025-12-22 12:41:17[39m",
+            [34mupdated_at[39m: "[32m2025-12-22 12:41:17[39m",
+          },
+        },
+        [34;4mApp\Models\MasterCategory[39;24m {#6756
+          [34mid[39m: [35m2[39m,
+          [34mname[39m: "[32mGIRL FASHION[39m",
+          [34mslug[39m: "[32mgirl-fashion[39m",
+          [34mimage_url[39m: [36mnull[39m,
+          [34mstatus[39m: [35m1[39m,
+          [34mpivot[39m: [34;4mIlluminate\Database\Eloquent\Relations\Pivot[39;24m {#6791
+            [34mhome_category_group_id[39m: [35m1[39m,
+            [34mmaster_category_id[39m: [35m2[39m,
+            [34mcreated_at[39m: "[32m2025-12-22 12:41:17[39m",
+            [34mupdated_at[39m: "[32m2025-12-22 12:41:17[39m",
+          },
+        },
+        [34;4mApp\Models\MasterCategory[39;24m {#6755
+          [34mid[39m: [35m3[39m,
+          [34mname[39m: "[32mFOOTWEAR[39m",
+          [34mslug[39m: "[32mfootwear[39m",
+          [34mimage_url[39m: [36mnull[39m,
+          [34mstatus[39m: [35m1[39m,
+          [34mpivot[39m: [34;4mIlluminate\Database\Eloquent\Relations\Pivot[39;24m {#6790
+            [34mhome_category_group_id[39m: [35m1[39m,
+            [34mmaster_category_id[39m: [35m3[39m,
+            [34mcreated_at[39m: "[32m2025-12-22 12:41:17[39m",
+            [34mupdated_at[39m: "[32m2025-12-22 12:41:17[39m",
+          },
+        },
+      ],
+    },
+  }
+

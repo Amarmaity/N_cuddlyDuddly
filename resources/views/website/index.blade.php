@@ -168,19 +168,27 @@
         </div>
     </div>
 
+<<<<<<< HEAD
 
+=======
+    {{-- Category --}}
+>>>>>>> officeDev
     <div class="wrapper px-5 mt-lg">
         <div class="container max-w-container mx-auto">
             <div class="title flex-box mt-lg mb-sm">
                 <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon" class="max-w-6">
                 </div> <span class="label text-black">Shop by category</span>
             </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> officeDev
             {{-- <div class="relative grid gap-4">
                 <div class="absolute -top-40 -right-[179px]"><img
                         src="{{ asset('storage/WebsiteImages/home/flowerpatter.png') }}" alt="flower design">
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
                     <div class="relative rounded-block overflow-hidden"><img
                             src="{{ asset('storage/WebsiteImages/home/pregnant-woman.png') }}" alt=""
                             class="h-400 transform transition-transform duration-300 hover:scale-110 cursor-pointer">
@@ -223,7 +231,9 @@
                         </a>
                     </div>
                 </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+
                     <div class="relative h-81 rounded-block overflow-hidden"><img
                             src="{{ asset('storage/WebsiteImages/home/categoryimg5.jpg') }}" alt=""
                             class="transform transition-transform duration-300 hover:scale-110 cursor-pointer">
@@ -244,6 +254,7 @@
                             </span>
                         </a>
                     </div>
+
                     <div class="relative h-81 rounded-block overflow-hidden"><img
                             src="{{ asset('storage/WebsiteImages/home/categoryimg4.jpg') }}" alt=""
                             class="transform transition-transform duration-300 hover:scale-110 cursor-pointer">
@@ -263,6 +274,7 @@
                             </span>
                         </a>
                     </div>
+
                     <div class="relative h-81 rounded-block overflow-hidden"><img
                             src="{{ asset('storage/WebsiteImages/home/categoryimg3.jpg') }}" alt=""
                             class="transform transition-transform duration-300 hover:scale-110 cursor-pointer">
@@ -283,6 +295,7 @@
                             </span>
                         </a>
                     </div>
+
                     <div class="relative h-81 rounded-block overflow-hidden"><img
                             src="{{ asset('storage/WebsiteImages/home/categoryimg2.jpg') }}" alt=""
                             class="transform transition-transform duration-300 hover:scale-110 cursor-pointer">
@@ -304,9 +317,16 @@
                         </a>
                     </div>
                 </div>
+<<<<<<< HEAD
             </div> --}}
 
              @php
+=======
+
+            </div> --}}
+            
+            @php
+>>>>>>> officeDev
                 $groupImages = [
                     0 => 'pregnant-woman.png',
                     1 => 'categoryimg6.jpg',
@@ -328,7 +348,11 @@
                 <!-- ================= TOP 2 BIG CARDS ================= -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     @foreach($categoryGroups->take(2) as $index => $group)
+<<<<<<< HEAD
                     {{-- @dd($group) --}}
+=======
+                        {{-- @dd($group) --}}
+>>>>>>> officeDev
                         <div class="relative rounded-block overflow-hidden">
 
                             <img src="{{ asset('storage/WebsiteImages/home/' . ($groupImages[$index] ?? 'default.jpg')) }}"
@@ -391,18 +415,76 @@
                     @endforeach
                 </div>
             </div>
+
         </div>
     </div>
     
 
 
 
+<<<<<<< HEAD
             <div class="relative wrapper px-5">
                 <div class="container relative z-10 max-w-container mx-auto">
                     <div class="title flex-box mt-lg mb-sm lg:mb-[200px]">
                         <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon"
                                 class="max-w-6">
                         </div> <span class="label text-black">Shop by customer favourites</span>
+=======
+    <div class="relative wrapper px-5">
+        <div class="container relative z-10 max-w-container mx-auto">
+            <div class="title flex-box mt-lg mb-sm lg:mb-[200px]">
+                <div><img src="{{ asset('storage/WebsiteImages/home/labelicon2.png') }}" alt="label icon" class="max-w-6">
+                </div> <span class="label text-black">Shop by customer favourites</span>
+            </div>
+            <div class="relative">
+                <div class="max-w-4xl m-auto flex flex-col justify-center">
+                    <div class="w-full flex justify-center items-end -mb-[74px] md:-mb-[132px]"><a href=""
+                            class="max-w-(--max-w-lg) md:max-w-[250px] max-[460px]:z-10 relative inline-block w-sm h-auto scale rotate-344">
+                            <img src="{{ asset('storage/WebsiteImages/home/button1.png') }}" alt="">
+                            <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex flex-col items-center"
+                                bis_skin_checked="1">
+                                <span class="font-sans text-lg font-semibold leading-tight tracking-1">under</span>
+                                <span class="font-sans text-3xl font-bold leading-tight tracking-1">₹399</span>
+                                <span class="font-sans text-xs font-normal leading-tight tracking-1 text-center">Infant
+                                    &amp; New Born
+                                    Essentials</span>
+                            </div>
+                        </a></div>
+                    <div class="w-full flex flex-wrap gap-0 md:gap-11">
+                        <div class="flex-1 flex justify-end"><a href=""
+                                class="max-w-[250px] md:max-w-[320px] relative inline-block w-sm h-auto scale">
+                                <img src="{{ asset('storage/WebsiteImages/home/button3.png') }}" alt=""
+                                    class="object-contain" />
+                                <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex flex-col items-center"
+                                    bis_skin_checked="1">
+                                    <span
+                                        class="font-sans text-lg font-semibold leading-tight tracking-1 text-white">under</span>
+                                    <span
+                                        class="font-sans text-3xl lg:text-5xl font-bold leading-tight tracking-1 text-white">₹799</span>
+                                    <span
+                                        class="font-sans text-xs font-normal leading-tight tracking-1 text-white text-center">Infant
+                                        &amp;
+                                        New Born
+                                        Essentials</span>
+                                </div>
+                            </a></div>
+                        <div class="flex-1 flex justify-start"><a href=""
+                                class="max-w-[260px] md:max-w-[480px] max-[460px]:-mt-[37px] relative inline-block w-sm h-auto scale">
+                                <img src="{{ asset('storage/WebsiteImages/home/button4.png') }}" alt="">
+                                <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex flex-col items-center"
+                                    bis_skin_checked="1">
+                                    <span
+                                        class="font-sans text-xl lg:text-(length:--font-para) font-semibold leading-tight tracking-1">under</span>
+                                    <span
+                                        class="font-sans text-3xl lg:text-6xl font-bold leading-tight tracking-1">₹1,299</span>
+                                    <span
+                                        class="font-sans text-base font-normal leading-tight tracking-1 text-center">Pregnancy
+                                        &amp; mom
+                                        care
+                                    </span>
+                                </div>
+                            </a></div>
+>>>>>>> officeDev
                     </div>
                     <div class="relative">
                         <div class="max-w-4xl m-auto flex flex-col justify-center">

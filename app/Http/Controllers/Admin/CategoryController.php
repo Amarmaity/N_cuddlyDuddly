@@ -146,7 +146,10 @@ class CategoryController extends Controller
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> officeDev
     public function products(Request $request, $category = null)
     {
         $perPage   = (int) $request->query('per_page', 20);
@@ -234,6 +237,7 @@ class CategoryController extends Controller
     }
 
 
+<<<<<<< HEAD
 
 
 
@@ -247,6 +251,8 @@ class CategoryController extends Controller
 
 
 
+=======
+>>>>>>> officeDev
     public function update(Request $request, $id)
     {
         $validated = $request->validate([

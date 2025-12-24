@@ -35,10 +35,10 @@
             {{-- SUCCESS --}}
             @if (session('success'))
                 <div class="alert alert-dismissible fade show 
-                                    flex items-center gap-3 
-                                    bg-gradient-to-r from-green-50 to-green-200 
-                                    !text-green-900 border !border-green-300 
-                                    shadow-md rounded-xl px-5 py-3">
+                                        flex items-center gap-3 
+                                        bg-gradient-to-r from-green-50 to-green-200 
+                                        !text-green-900 border !border-green-300 
+                                        shadow-md rounded-xl px-5 py-3">
 
                     <i class="fa-solid fa-circle-check text-green-700 text-xl"></i>
 
@@ -51,10 +51,10 @@
             {{-- ERROR --}}
             @if (session('error'))
                 <div class="alert alert-dismissible fade show 
-                                    flex items-center gap-3 
-                                    bg-gradient-to-r from-red-50 to-red-200 
-                                    text-red-900 border border-red-300
-                                    shadow-md rounded-xl px-5 py-3">
+                                        flex items-center gap-3 
+                                        bg-gradient-to-r from-red-50 to-red-200 
+                                        text-red-900 border border-red-300
+                                        shadow-md rounded-xl px-5 py-3">
 
                     <i class="fa-solid fa-triangle-exclamation text-red-700 text-xl"></i>
 
@@ -69,22 +69,22 @@
 
     </div>
 
-    <div class="w-full flex gap-4">
+    <div class="w-full flex flex-wrap gap-4">
         <div
-            class="flex-1 flex-box w-full max-w-full order-1 md:w-auto md:max-w-auto justify-start rounded-[64.18px] border border-black/20 pl-4 pr-2.5 py-4">
+            class="flex-1 flex-box w-full max-w-full order-2 lg:order-[unset] max-w-auto justify-start rounded-[64.18px] border border-black/20 pl-4 pr-2.5 py-4">
             <span><img src={{ asset('storage/images/dahboard-search.png') }} alt=""
                     class="max-w-[25px] object-contain"></span><input type="text"
                 class="w-full h-full placeholder:font-sans placeholder:text-xl placeholder:text-black placeholder:font-normal placeholder:tracking-1 placeholder:leading-tight"
                 placeholder="Search">
         </div>
-        <div class="w-full md:w-auto flex items-center gap-5">
-            <button id="dashboardhamburger" type="button" class="text-[28px] block lg:hidden m-auto">
+        <div class="w-full lg:w-auto flex items-center gap-5">
+            <button id="dashboardhamburger" type="button" class="text-[28px] block lg:hidden ml-0 lg:m-auto">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
 
             <button
-                class="w-10 h-10 md:w-[65px] md:h-[65px] ml-auto inline-block mr-0 my-0 md:m-auto group rounded-full border border-black/20 hover:bg-black"><svg
+                class="w-10 h-10 md:w-[65px] md:h-[65px] ml-auto inline-block lg:mr-0 my-0 lg:m-auto group rounded-full border border-black/20 hover:bg-black"><svg
                     width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg"
                     class="w-full max-h-6 group-hover:text-white">
                     <path
@@ -99,26 +99,13 @@
             <div class="w-10 h-10 md:w-[65px] md:h-[65px] rounded-full border border-black/20 overflow-hidden">
                 <img src="{{asset('storage/images/profileimg.png')}}" alt="" class="scale-150">
             </div>
-
-            {{-- <span>
+            <span class="md:rounded-[50%] md:bg-white">
                 <form id="logoutForm" method="POST" action="{{ route('seller.logout') }}"
-                    class="w-10 h-10 md:w-[65px] md:h-[65px] ml-auto flex mr-0 my-0 md:m-auto group rounded-full border border-black/20 hover:bg-black flex items-center justify-center">
-                    @csrf
-                    <button type="submit" id="logoutBtn"
-                        class="flex flex-col items-center justify-center cursor-pointer text-center text-black group-hover:text-white">
-                        <i class="fas fa-sign-out-alt text-lg text-[8px] leading-none"></i>
-                        <span class="text-[8px]  font-medium leading-none ">Logout</span>
-                    </button>
-                </form>
-            </span> --}}
-            <span>
-                <form id="logoutForm" method="POST" action="{{ route('seller.logout') }}"
-                    class="w-10 h-10 md:w-[65px] md:h-[65px] ml-auto flex mr-0 my-0 md:m-auto group rounded-full border border-black/20 hover:bg-black flex items-center justify-center">
+                    class="w-10 h-10 md:w-[65px] md:h-[65px] ml-auto flex mr-0 my-0 md:m-auto group rounded-full border-0 hover:bg-black flex items-center justify-center">
                     @csrf
                     <button type="button" id="logoutBtn"
                         class="flex flex-col items-center justify-center cursor-pointer text-center text-black group-hover:text-white">
-                        <i class="fas fa-sign-out-alt text-lg"></i>
-                        <span class="text-[8px] font-medium">Logout</span>
+                        <i class="fas fa-sign-out-alt text-lg text-[20px] md:text-[30px]"></i>
                     </button>
                 </form>
             </span>

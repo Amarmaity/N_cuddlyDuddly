@@ -9,7 +9,7 @@ use App\Services\CategoryTreeService;
 
 class LandingController extends Controller
 {
-    public function home()
+   public function home()
     {
         $departments = CategoryTreeService::build();
         $masterCategories = MasterCategory::where('status', 1)->get();
