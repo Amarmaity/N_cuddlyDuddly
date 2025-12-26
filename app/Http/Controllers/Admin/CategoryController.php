@@ -144,12 +144,6 @@ class CategoryController extends Controller
     //     return response()->json($products);
     // }
 
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> officeDev
     public function products(Request $request, $category = null)
     {
         $perPage   = (int) $request->query('per_page', 20);
@@ -236,23 +230,6 @@ class CategoryController extends Controller
         return ProductListResource::collection($products);
     }
 
-
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> officeDev
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
