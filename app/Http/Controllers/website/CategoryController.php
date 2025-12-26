@@ -11,12 +11,6 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-<<<<<<< HEAD
-    /**
-     * Get products for a category by slug or category ID
-     */
-=======
->>>>>>> officeDev
     public function products(Request $request, $category = null)
     {
         $perPage = (int) $request->query('per_page', 30);
@@ -82,8 +76,4 @@ class CategoryController extends Controller
 
         return ProductListResource::collection($products);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> officeDev
