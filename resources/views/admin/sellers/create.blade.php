@@ -42,21 +42,52 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-md-6 mb-3">
+                    {{-- <div class="col-md-6 mb-3">
                         <label class="form-label"><i class="bi bi-telephone"></i> Phone <span
                                 class="text-danger">*</span></label>
-                        <input type="text" name="phone" value="{{ old('phone') }}"
+                        <input type="text" id="phone" name="phone" value="{{ old('phone') }}"
                             class="form-control @error('phone') is-invalid @enderror" required>
                         @error('phone')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div> --}}
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">
+                            <i class="bi bi-telephone"></i> Phone
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <div class="input-group">
+                            <!-- Country flag -->
+                            <span class="input-group-text" id="country-flag">
+                                <img src="" id="flag-img" width="24" style="display:none;">
+                            </span>
+
+                            <!-- Country code -->
+                            <span class="input-group-text" id="country-code">+--</span>
+
+
+
+                            <!-- Phone number -->
+                            <input type="text" name="phone" value="{{ old('phone') }}"
+                                class="form-control @error('phone') is-invalid @enderror" placeholder="Enter mobile number"
+                                maxlength="10" required>
+                        </div>
+
+                        @error('phone')
+                            <div class="invalid-feedback d-block">
+                                {{ $message }}
+                            </div>
                         @enderror
                     </div>
+
                 </div>
 
                 {{-- Address --}}
                 <div class="mb-3">
                     <label class="form-label"><i class="bi bi-geo-alt"></i> Address</label>
-                    <textarea name="address" rows="2" class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
+                    <textarea name="address" rows="2"
+                        class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
                     @error('address')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -65,13 +96,11 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label class="form-label">City</label>
-                        <input type="text" id="city" name="city" value="{{ old('city') }}"
-                            class="form-control">
+                        <input type="text" id="city" name="city" value="{{ old('city') }}" class="form-control">
                     </div>
                     <div class="col-md-4 mb-3">
                         <label class="form-label">State</label>
-                        <input type="text" id="state" name="state" value="{{ old('state') }}"
-                            class="form-control">
+                        <input type="text" id="state" name="state" value="{{ old('state') }}" class="form-control">
                     </div>
                     <div class="col-md-4 mb-3">
                         <label class="form-label">Country</label>
@@ -126,34 +155,33 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label class="form-label">UPI ID</label>
-                        <input type="text" id="upi_id" name="upi_id" value="{{ old('upi_id') }}"
-                            class="form-control">
+                        <input type="text" id="upi_id" name="upi_id" value="{{ old('upi_id') }}" class="form-control">
                         <div id="ifsc-feedback" class="text-muted small"></div>
                     </div>
-                    <div class="col-md-6 mb-3"> <label class="form-label">Commission Rate (%)</label> <input
-                            type="number" step="0.01" name="commission_rate" value="{{ old('commission_rate') }}"
+                    <div class="col-md-6 mb-3"> <label class="form-label">Commission Rate (%)</label> <input type="number"
+                            step="0.01" name="commission_rate" value="{{ old('commission_rate') }}"
                             class="form-control @error('commission_rate') is-invalid @enderror"> @error('commission_rate')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                     </div>
                 </div> {{-- Uploads --}}
                 <div class="row">
-                    <div class="col-md-6 mb-3"> <label class="form-label">Seller Logo</label> <input type="file"
-                            name="logo" class="form-control @error('logo') is-invalid @enderror"> @error('logo')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                    <div class="col-md-6 mb-3"> <label class="form-label">Seller Logo</label> <input type="file" name="logo"
+                            class="form-control @error('logo') is-invalid @enderror"> @error('logo')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="col-md-6 mb-3"> <label class="form-label">Documents (KYC, Agreement, etc.)</label> <input
                             type="file" name="documents[]" multiple
                             class="form-control @error('documents') is-invalid @enderror"> @error('documents')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                     </div>
                 </div>
                 {{-- Status --}}
-                <div class="form-check mb-3"> <input type="checkbox" name="is_active" value="1"
-                        class="form-check-input" id="is_active" {{ old('is_active', true) ? 'checked' : '' }}> <label
-                        class="form-check-label" for="is_active">
+                <div class="form-check mb-3"> <input type="checkbox" name="is_active" value="1" class="form-check-input"
+                        id="is_active" {{ old('is_active', true) ? 'checked' : '' }}> <label class="form-check-label"
+                        for="is_active">
                         Active Seller</label> </div>
 
                 {{-- Buttons --}}
@@ -171,15 +199,16 @@
 @endsection
 
 @push('scripts')
-    {{-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
+    {{--
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
 
-            document.querySelector('[name="postal_code"]').addEventListener('blur', function() {
+            document.querySelector('[name="postal_code"]').addEventListener('blur', function () {
                 let pin = this.value.trim();
                 if (pin.length === 6) {
                     fetch(`https://api.postalpincode.in/pincode/${pin}`)
                         .then(res => res.json())
-                        .then(data => {
+                        .then data => {
                             if (data[0].Status === "Success") {
                                 let post = data[0].PostOffice[0];
                                 document.querySelector('[name="city"]').value = post.District;
@@ -191,7 +220,7 @@
             });
 
             // 2. GST Validation
-            document.getElementById("gst_number").addEventListener("blur", function() {
+            document.getElementById("gst_number").addEventListener("blur", function () {
                 let gst = this.value.trim();
                 if (gst.length === 15) {
                     document.getElementById("gst-feedback").innerHTML =
@@ -212,7 +241,7 @@
             });
 
             // 3. PAN Validation
-            document.getElementById("pan_number").addEventListener("blur", function() {
+            document.getElementById("pan_number").addEventListener("blur", function () {
                 let pan = this.value.trim();
                 if (/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) {
                     document.getElementById("pan-feedback").innerHTML =
@@ -235,7 +264,7 @@
                 }
             });
 
-            document.querySelector('[name="ifsc_code"]').addEventListener('blur', function() {
+            document.querySelector('[name="ifsc_code"]').addEventListener('blur', function () {
                 let ifsc = this.value.trim();
                 if (ifsc.length === 11) {
                     fetch(`https://ifsc.razorpay.com/${ifsc}`)
@@ -250,4 +279,8 @@
             });
         });
     </script> --}}
+
+    <script src="{{ asset('js/phone-number.js') }}"></script>
+
+
 @endpush

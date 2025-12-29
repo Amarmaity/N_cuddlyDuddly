@@ -7,6 +7,7 @@ use App\Models\Sellers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Schema;
 use App\Mail\SellerKycStatusMail;
 
 class SellerController extends Controller
@@ -59,13 +60,16 @@ class SellerController extends Controller
     {
         try {
             // -----------------------------
-            // 1. VALIDATION
+            // 1. BASIC VALIDATION
             // -----------------------------
             $request->validate([
                 'name'              => 'required|string|regex:/^[A-Za-z ]+$/|max:255',
                 'contact_person'    => 'required|string|max:255',
                 'email'             => 'required|email|unique:sellers,email',
-                'phone'             => 'required|digits:10|unique:sellers,phone',
+                // Allow flexible phone input (we'll normalise + validate uniqueness below)
+                'phone'             => 'required|string|min:6|max:20',
+                'country_calling_code' => 'nullable|string|max:10',
+                'country_iso' => 'nullable|string|max:5',
                 'address'           => 'nullable|string|max:500',
                 'city'              => 'nullable|string|max:255',
                 'state'             => 'nullable|string|max:255',
@@ -85,11 +89,35 @@ class SellerController extends Controller
             ]);
 
             // -----------------------------
-            // 2. PREPARE DATA
+            // 2. NORMALISE PHONE + UNIQUE CHECK
+            // -----------------------------
+            $rawPhone = $request->input('phone');
+            $digits = preg_replace('/\D+/', '', $rawPhone);
+            $callingCode = preg_replace('/\D+/', '', $request->input('country_calling_code', ''));
+
+            // If we have a calling code, use it; otherwise keep digits only
+            $normalizedPhone = $callingCode ? ($callingCode . $digits) : $digits;
+
+            // check uniqueness
+            if (Sellers::where('phone', $normalizedPhone)->exists()) {
+                return redirect()->back()->withErrors(['phone' => 'Phone number already exists.'])->withInput();
+            }
+
+            // -----------------------------
+            // 3. PREPARE DATA
             // -----------------------------
             $data = $request->except(['logo', 'documents', 'is_active']);
             $data['is_active'] = $request->has('is_active') ? 1 : 0;
             $data['compliance_status'] = 'pending';
+
+            // store normalized phone and country meta when possible
+            $data['phone'] = $normalizedPhone;
+            if ($request->filled('country_calling_code') && Schema::hasColumn('sellers', 'country_calling_code')) {
+                $data['country_calling_code'] = $callingCode;
+            }
+            if ($request->filled('country_iso') && Schema::hasColumn('sellers', 'country_iso')) {
+                $data['country_iso'] = strtoupper($request->input('country_iso'));
+            }
 
             // -----------------------------
             // 3. STORE LOGO
@@ -157,10 +185,32 @@ class SellerController extends Controller
             'name' => 'required|string|max:255',
             'contact_person' => 'required|string|max:255',
             'email' => 'required|email|unique:sellers,email,' . $seller->id,
-            'phone' => 'required|digits:10|unique:sellers,phone,' . $seller->id,
+            'phone' => 'required|string|min:6|max:20',
+            'country_calling_code' => 'nullable|string|max:10',
+            'country_iso' => 'nullable|string|max:5',
         ]);
 
-        $seller->update($request->all());
+        // Normalize phone
+        $rawPhone = $request->input('phone');
+        $digits = preg_replace('/\D+/', '', $rawPhone);
+        $callingCode = preg_replace('/\D+/', '', $request->input('country_calling_code', ''));
+        $normalizedPhone = $callingCode ? ($callingCode . $digits) : $digits;
+
+        // uniqueness check excluding current seller
+        if (Sellers::where('phone', $normalizedPhone)->where('id', '<>', $seller->id)->exists()) {
+            return redirect()->back()->withErrors(['phone' => 'Phone number already exists.'])->withInput();
+        }
+
+        $data = $request->except(['country_calling_code', 'country_iso']);
+        $data['phone'] = $normalizedPhone;
+        if ($request->filled('country_calling_code') && Schema::hasColumn('sellers', 'country_calling_code')) {
+            $data['country_calling_code'] = $callingCode;
+        }
+        if ($request->filled('country_iso') && Schema::hasColumn('sellers', 'country_iso')) {
+            $data['country_iso'] = strtoupper($request->input('country_iso'));
+        }
+
+        $seller->update($data);
 
         return redirect()->route('admin.sellers.index')
             ->with('success', 'Seller updated successfully');
