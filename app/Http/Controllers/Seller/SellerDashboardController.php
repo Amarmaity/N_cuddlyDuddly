@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Products;
-use App\Models\Sellers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,17 +28,21 @@ class SellerDashboardController extends Controller
             $q->where('seller_id', $seller->id);
         })->sum('price');
 
+        $recentOrders = OrderItem::with('product','order')
+        ->whereHas('product', function($q) use ($seller){
+            $q->where('seller_id', $seller->id);
+        })->latest()
+        ->take(10)
+        ->get();
+
         return view('seller.dashboard', compact(
             'seller',
             'totalProducts',
             'totalOrders',
-            'totalEarning'
+            'totalEarning',
+            'recentOrders'
         ));
     }
 
-    //  public function test2()
-    // {
-    //     // You can later add seller stats, payouts summary, etc.
-    //     return view('seller.test');
-    // }
+
 }

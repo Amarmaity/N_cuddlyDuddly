@@ -161,13 +161,14 @@
                             <thead>
                                 <tr class="border-b border-black/20">
                                     <th class="pl-5">Order ID</th>
+                                    {{-- <th>Seller Id</th> --}}
                                     <th>Product</th>
                                     <th>Date</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            {{-- <tbody>
                                 <tr>
                                     <td>#12337</td>
                                     <td>Baby Blanket</td>
@@ -249,13 +250,51 @@
                                                 alt=""></span>
                                     </td>
                                 </tr>
+                            </tbody> --}}
+                            <tbody>
+                                @forelse($recentOrders as $item)
+                                <tr>
+                                    <td>#{{ $item->order->order_number ?? $item->order_id }}</td>
+                                    {{-- <td>{{ $item->product->seller_id ?? 'N/A' }}</td> --}}
+                                    <td>{{ $item ->product->name ?? 'N/A' }}</td>
+                                    <td>{{ $item->created_at->format('d M Y') }}</td>
+                                    <td>
+                                        @php
+                                             $status = strtolower($item->order->order_status ?? 'processing');
+                                        @endphp
+
+                                        <span class="
+                                            @if($status === 'delivered') deliver-btn
+                                            @elseif($status === 'shipped') shipped
+                                            @elseif($status === 'cancelled') cancelled
+                                            @elseif(in_array($status, ['processing', 'pending'])) processing
+                                            @elseif($status === 'refund') refund
+                                            @endif
+                                        ">
+                                            {{ ucfirst($status) }}
+                                        </span>
+
+                                    </span>
+                                    </td>
+                                    <td>
+                                        <span class="popup">
+                                            <img src="{{ asset('storage/images/table-popup.png') }}" alt="">
+                                        </span>
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="5" class="text-center py-4">
+                                        No recent orders found
+                                    </td>
+                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
 @endsection
