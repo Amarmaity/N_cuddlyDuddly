@@ -211,7 +211,8 @@ Route::prefix('admin')->middleware('admin.auth', 'verify.admin.session', 'admin.
 |--------------------------------------------------------------------------
 */
 Route::prefix('seller')->middleware('seller.auth')->group(function () {
-    Route::get('/dashboard', [SellerDashboardController::class, 'index'])->name('seller.dashboard');
+    Route::get('dashboard/{id}/', [SellerDashboardController::class, 'index'])->name('seller.dashboard');
+    Route::get('add-products/{id}', [SellerProductController::class, 'create'])->name('seller.add.products');
     Route::resource('orders', SellerOrderController::class)->names('seller.orders');
     Route::resource('products', SellerProductController::class)->names('seller.products');
     Route::resource('payouts', SellerPayoutController::class)->names('seller.payouts');
@@ -226,6 +227,6 @@ Route::prefix('seller')->middleware('seller.auth')->group(function () {
 
 Route::name('website.')->group(function () {
     Route::get('/', [LandingController::class, 'home'])->name('home');
-    Route::get('/categories/{category}/products', [WebsiteCategoryController::class, 'products'])->name('category.products'); 
+    Route::get('/categories/{category}/products', [WebsiteCategoryController::class, 'products'])->name('category.products');
 });
 

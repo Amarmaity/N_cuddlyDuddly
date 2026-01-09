@@ -18,22 +18,22 @@ class SellerProductController extends Controller
     {
         $seller = Auth::guard('seller')->user();
 
-        $products = Products::where('seller_id', $seller->id)
+        $products = Products::where('seller_id')
             ->latest()
-            ->paginate(10);
-
+            ->paginate(20);
         return view('seller.products.index', compact('products'));
     }
 
     public function create()
     {
         // Logged-in seller (if you need any seller info for display)
-        $seller = Auth::guard('seller')->user();
+        // $seller = Auth::guard('seller')->user();
+        // $authenticSeller = $seller->id;
 
-        // Fetch category hierarchy
-        $categoryTree = MasterCategorySection::with(['masterCategory', 'sectionType', 'category'])->get();
+        // // Fetch category hierarchy
+        // $categoryTree = MasterCategorySection::with(['masterCategory', 'sectionType', 'category'])->get();
 
-        return view('seller.products.create', compact('categoryTree', 'seller'));
+        return view('seller.products.create');
     }
 
 
@@ -47,7 +47,7 @@ class SellerProductController extends Controller
             'stock' => 'required|integer|min:0',
             'description' => 'nullable|string',
             'images' => 'required|array|min:3',
-            'images.*' => 'image|mimes:jpeg,jpg,png|max:500', // max size in KB
+            'images.*' => 'image|mimes:jpeg,jpg,png|max:500', 
         ], [
             'images.*.mimes' => 'Only JPG, JPEG, or PNG formats are allowed.',
             'images.*.max' => 'Each image must be less than 500KB.',
@@ -58,7 +58,7 @@ class SellerProductController extends Controller
 
         try {
             // Use logged-in seller ID
-            $sellerId = Auth::guard('seller')->id();
+            $sellerId = $request->authenticSeller;
 
             $product = Products::create([
                 'seller_id' => $sellerId,

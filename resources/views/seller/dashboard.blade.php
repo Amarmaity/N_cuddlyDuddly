@@ -16,10 +16,6 @@
                 <p class="font-sans font-normal text-lg leading-tight tracking-1 text-black">Let's get your
                     store moving!</p>
             </div>
-            <button
-                class="w-[145px] h-[45px] sm:w-[180px] sm:h-[62px] rounded-[10px] bg-[#1C1C1C] border-[1.18px] self-start mt-3 md:mt-0 md:self-end border-black/20"><span
-                    class="font-sans font-medium text-base leading-tight tracking-1 text-white">Add
-                    Listing</span></button>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-6 md:pl-14 md:pr-9 pb-4">
             <a href="#!" class="dashboard-card">
@@ -56,7 +52,6 @@
                 <p class="dashboard-title">My earnings</p>
                 <span class="dashboard-count">{{$totalEarning}}</span>
                 <p class="dashboard-detail">+3.5% than last month</p>
-
             </a>
         </div>
 
@@ -168,89 +163,6 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
-                                <tr>
-                                    <td>#12337</td>
-                                    <td>Baby Blanket</td>
-                                    <td>29 Apr 2025</td>
-                                    <td><span class="deliver-btn">Delivered</span></td>
-                                    <td><span class="popup"><img src="{{asset('storage/images/table-popup.png')}}"
-                                                alt=""></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#12387</td>
-                                    <td>Bottle Set</td>
-                                    <td>12 Mar 2025</td>
-                                    <td><span class="cancelled">Cancelled</span></td>
-                                    <td><span class="popup"><img src="{{asset('storage/images/table-popup.png')}}"
-                                                alt=""></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#12387</td>
-                                    <td>Bottle Set</td>
-                                    <td>12 Mar 2025</td>
-                                    <td><span class="processing">Processing</span></td>
-                                    <td><span class="popup"><img src="{{asset('storage/images/table-popup.png')}}"
-                                                alt=""></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#12387</td>
-                                    <td>Bottle Set</td>
-                                    <td>12 Mar 2025</td>
-                                    <td><span class="refund">Delivered</span></td>
-                                    <td><span class="popup"><img src="{{asset('storage/images/table-popup.png')}}"
-                                                alt=""></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#12387</td>
-                                    <td>Bottle Set</td>
-                                    <td>12 Mar 2025</td>
-                                    <td><span class="refund">Refund</span></td>
-                                    <td><span class="popup"><img src="{{asset('storage/images/table-popup.png')}}"
-                                                alt=""></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#12387</td>
-                                    <td>Bottle Set</td>
-                                    <td>12 Mar 2025</td>
-                                    <td><span class="deliver-btn">Delivered</span></td>
-                                    <td><span class="popup"><img src="{{asset('storage/images/table-popup.png')}}"
-                                                alt=""></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#12387</td>
-                                    <td>Bottle Set</td>
-                                    <td>12 May 2025</td>
-                                    <td><span class="processing">processing</span></td>
-                                    <td><span class="popup"><img src="{{asset('storage/images/table-popup.png')}}"
-                                                alt=""></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#12387</td>
-                                    <td>Bottle Set</td>
-                                    <td>12 Mar 2025</td>
-                                    <td><span class="refund">refund</span></td>
-                                    <td><span class="popup"><img src="{{asset('storage/images/table-popup.png')}}"
-                                                alt=""></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#12387</td>
-                                    <td>Bottle Set</td>
-                                    <td>12 Mar 2025</td>
-                                    <td><span class="cancelled">cancelled</span></td>
-                                    <td><span class="popup"><img src="{{asset('storage/images/table-popup.png')}}"
-                                                alt=""></span>
-                                    </td>
-                                </tr>
-                            </tbody> --}}
                             <tbody>
                                 @forelse($recentOrders as $item)
                                 <tr>

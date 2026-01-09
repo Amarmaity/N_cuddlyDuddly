@@ -1,6 +1,7 @@
 @php
     use Illuminate\Support\Facades\Auth;
     $seller = Auth::guard('seller')->user();
+    $isSeller = Auth::guard('seller')->check(); 
 @endphp
 
 
@@ -11,7 +12,7 @@
         <nav class="dashboardnav">
             <ul class="flex flex-col gap-[45px]">
                 <li class="dashboard-list">
-                    <a href="#!">
+                    <a href="{{ route('seller.dashboard', ['id' => $seller->id]) }}">
                         <span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +38,7 @@
                     </a>
                 </li>
                 <li class="dashboard-list">
-                    <a href="#!"><span>
+                    <a href="{{ route('seller.products.index') }}"><span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 3V9" stroke="black" stroke-width="2" stroke-linecap="round"
@@ -52,7 +53,7 @@
                         </span><span>My products</span></a>
                 </li>
                 <li class="dashboard-list">
-                    <a href="#!">
+                    <a href="{{ route('seller.orders.index') }}">
                         <span>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">

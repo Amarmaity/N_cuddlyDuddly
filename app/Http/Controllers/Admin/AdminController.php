@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Sellers;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -27,7 +28,8 @@ class AdminController extends Controller
     {
         // redirect if already logged in
         if (Auth::guard('seller')->check()) {
-            return redirect()->route('seller.dashboard');
+            $seller = Auth::guard('seller')->user();
+            return redirect()->route('seller.dashboard', ['id' => $seller->id]);
         }
 
         return view('seller.login');
@@ -36,7 +38,7 @@ class AdminController extends Controller
 
     public function showCustomerLoginForm()
     {
-        if(Auth::guard('web')->check()){
+        if (Auth::guard('web')->check()) {
             return redirect()->route('website.home');
         }
         return view('#');
@@ -115,7 +117,7 @@ class AdminController extends Controller
             Auth::guard('seller')->login($seller);
             $request->session()->regenerate();
 
-            return redirect()->route('seller.dashboard')->with('success', 'Welcome Seller ' . $seller->name . '!');
+            return redirect()->route('seller.dashboard', ['id' => $seller->id])->with('success', 'Welcome Seller ' . $seller->name . '!');
         }
 
         /**
@@ -183,19 +185,19 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:admin_users,email',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:admin_users,email',
             'password' => 'required|string|min:6',
-            'phone'    => 'nullable|digits:10',
-            'role_id'  => 'nullable|exists:roles,id',
+            'phone' => 'nullable|digits:10',
+            'role_id' => 'nullable|exists:roles,id',
         ]);
 
         AdminUser::create([
-            'name'      => $validated['name'],
-            'email'     => $validated['email'],
-            'phone'     => $validated['phone'] ?? null,
-            'password'  => Hash::make($validated['password']),
-            'role_id'   => $validated['role_id'] ?? null,
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'] ?? null,
+            'password' => Hash::make($validated['password']),
+            'role_id' => $validated['role_id'] ?? null,
             'is_active' => true,
         ]);
 
@@ -206,17 +208,17 @@ class AdminController extends Controller
     public function update(Request $request, AdminUser $user)
     {
         $validated = $request->validate([
-            'name'    => 'required|string|max:255',
-            'email'   => 'required|email|unique:admin_users,email,' . $user->id,
-            'phone'   => 'nullable|digits:10',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:admin_users,email,' . $user->id,
+            'phone' => 'nullable|digits:10',
             'role_id' => 'nullable|exists:roles,id',
         ]);
 
         $user->update([
-            'name'     => $validated['name'],
-            'email'    => $validated['email'],
-            'phone'    => $validated['phone'] ?? null,
-            'role_id'  => $validated['role_id'] ?? null,
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'] ?? null,
+            'role_id' => $validated['role_id'] ?? null,
         ]);
 
         return redirect()->route('admin.roles.index')

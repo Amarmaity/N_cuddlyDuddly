@@ -3,106 +3,181 @@
 @section('title', 'Add New Product')
 
 @section('content')
-    <div class="container-fluid py-1">
-        <div class="card shadow-sm border-0">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="mb-0"><i class="bi bi-box2-heart me-2"></i> Add New Product</h5>
+
+    <div class="flex-[unset] sm:flex-1">
+        @include('seller.layouts.header')
+        <div class="w-full flex gap-6 flex-col justify-between pt-6 px-6 md:pl-14 md:pr-9 pb-10 ">
+            <div class="flex items-center gap-6 ">
+                <a href="#" class=" flex items-center justify-center bg-black rounded-[50%]">
+                    <img class="!w-[10px] !h-[10px]" src="{{asset('storage/images/Frame.svg')}}" alt="">
+                </a>
+                <div>
+                    <h3 class="font-sans font-normal text-3xl sm:text-[40px] leading-tight tracking-1 text-black">
+                        @php $seller = Auth::guard('seller')->user(); @endphp
+                        @if ($seller)
+                            <span class="me-3 w-[765px] h-[87px]">Add new products</span>
+                        @endif
+                    </h3>
+                    <p class="font-sans font-normal text-lg leading-tight tracking-1 text-black">
+                        Fill in the details below to list your product on CuddlyDuddly
+                    </p>
+                </div>
             </div>
 
-            <div class="card-body">
-                <form id="productForm" action="{{ route('seller.products.store') }}" method="POST"
-                    enctype="multipart/form-data">
-                    @csrf
 
-                    <div class="row g-3">
-
-                        <!-- 🏷 Category Multi-select -->
-                        <div class="col-md-8">
-                            <label class="form-label fw-semibold">Categories</label>
-                            <select name="master_category_section_id[]" id="categorySelect" multiple required>
-                                @foreach ($categoryTree as $item)
-                                    <option value="{{ $item->id }}">
-                                        {{ $item->masterCategory->name ?? 'N/A' }} →
-                                        {{ $item->sectionType->name ?? 'N/A' }} →
-                                        {{ $item->category->name ?? 'N/A' }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <small class="text-muted">You can select multiple categories (search supported).</small>
-                        </div>
-
-                        <!-- 📝 Product Name -->
-                        <div class="col-md-4">
-                            <label class="form-label fw-semibold">Product Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="Product name" required>
-                        </div>
-
-                        <!-- 💰 Price -->
-                        <div class="col-md-4">
-                            <label class="form-label fw-semibold">Price</label>
-                            <input type="number" step="0.01" name="price" class="form-control" placeholder="0.00"
-                                required>
-                        </div>
-
-                        <!-- 📦 Stock -->
-                        <div class="col-md-4">
-                            <label class="form-label fw-semibold">Stock</label>
-                            <input type="number" name="stock" class="form-control" placeholder="Quantity in stock"
-                                required>
-                        </div>
-
-                        <!-- 📝 Description -->
-                        <div class="col-12">
-                            <label class="form-label fw-semibold">Description</label>
-                            <textarea name="description" class="form-control" rows="4" placeholder="Product description"></textarea>
-                        </div>
-
-                        <!-- 🖼 Product Images -->
-                        <div class="col-12">
-                            <label class="form-label fw-semibold">Product Images</label>
-
-                            <div id="dropZone" class="dropzone-area text-center">
-                                <div class="dropzone-content" id="dropzoneContent">
-                                    <i class="bi bi-cloud-arrow-up fs-2 text-primary"></i>
-                                    <p class="mt-2 mb-1 fw-semibold">Drag & Drop Images Here or Click to Browse</p>
-                                    <small class="text-muted">Upload at least 3 images (JPEG, PNG, max 500KB each).</small>
-                                </div>
-                                <div id="imagePreviews" class="preview-container mt-3 d-none"></div>
-                                <div id="uploadProgress" class="upload-progress mt-3 d-none">
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
-                                    </div>
-                                    <small class="upload-status">
-                                        Uploading: <span class="upload-count">0</span>/<span class="total-count">0</span>
-                                    </small>
-                                </div>
+            <div class="bg-white rounded-lg border border-black/10 overflow-hidden
+                        max-w-[1201px] h-[1221px] w-full mx-auto self-start">
+                <!-- SECTION: Basic Information -->
+                <div class="border-b border-black/10">
+                    <button class="accordion-toggle w-full flex justify-between items-center px-6 py-4 bg-gray-50">
+                        <h4 class="font-sans text-lg font-medium text-black">Basic Information</h4>
+                        <svg class="accordion-icon w-5 h-5 text-black" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <!-- Basic Information -->
+                    <div class="px-6 py-6 space-y-6">
+                        <!-- Row -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-black mb-1">
+                                    Product Name<span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" placeholder="e.g. Organic baby blanket"
+                                    class="w-full border border-black/20 rounded px-4 py-2 outline-none focus:border-black">
                             </div>
 
-                            <input type="file" id="imageInput" name="images[]" accept="image/*" multiple hidden>
+                            <div>
+                                <label class="block text-sm font-medium text-black mb-1">
+                                    Category<span class="text-red-500">*</span>
+                                </label>
+                                <select
+                                    class="w-full border border-black/20 rounded px-4 py-2 outline-none focus:border-black">
+                                    <option>Select category</option>
+                                </select>
+                            </div>
                         </div>
-                        <div id="errorMessage" class="text-danger mt-2 small fw-semibold d-none"></div>
-                    </div>
+                        <!-- Short Description -->
+                        <div>
+                            <label class="block text-sm font-medium text-black mb-1">
+                                Short Description<span class="text-red-500">*</span>
+                            </label>
+                            <textarea rows="4" placeholder="Brief description shown under products"
+                                class="w-full border border-black/20 rounded px-4 py-2 outline-none focus:border-black"></textarea>
+                            <p class="text-xs text-black/50 text-right mt-1">0/100</p>
+                        </div>
 
-                    <!-- 🎯 Submit -->
-                    <div class="mt-4">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-plus-circle me-1"></i> Add Product
-                        </button>
-                        <a href="{{ route('seller.products.index') }}" class="btn btn-secondary">Cancel</a>
                     </div>
-                </form>
+                </div>
+
+                <!-- SECTION: Pricing & Inventory -->
+                <div class="border-b border-black/10">
+                    <button class="accordion-toggle w-full flex justify-between items-center px-6 py-4 bg-gray-50">
+                        <h4 class="font-sans text-lg font-medium text-black">Pricing & Inventory</h4>
+                        <svg class="accordion-icon w-5 h-5 text-black" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div class="px-6 py-6 hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 h-[1095px] w-[115px]">
+                            <!-- pricing fields -->
+                            <div>
+                                <label class="block text-sm font-medium text-black mb-1">
+                                    Price<span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" placeholder="0.0"
+                                    class="w-full border border-black/20 rounded px-4 py-2 outline-none focus:border-black">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-black mb-1">
+                                    Stock Quantity<span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" placeholder="Enter avaliable units"
+                                    class="w-full border border-black/20 rounded px-4 py-2 outline-none focus:border-black">
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <label class="text-sm font-medium text-black">
+                                        SKU/Product ID<span class="text-red-500">*</span>
+                                    </label>
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" value="" class="sr-only peer">
+                                        <div class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+                                    </label>
+                                </div>
+                                <input type="text" placeholder="Enter"
+                                    class="w-full border border-black/20 rounded px-4 py-2 outline-none focus:border-black">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION: Product Details -->
+                <div class="border-b border-black/10">
+                    <button class="accordion-toggle w-full flex justify-between items-center px-6 py-4 bg-gray-50">
+                        <h4 class="font-sans text-lg font-medium text-black">Product images & Description</h4>
+                        <svg class="accordion-icon w-5 h-5 text-black" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="px-6 py-6 hidden">
+                        <div>
+                            <label class="block text-sm font-medium text-black mb-1">
+                                Short Description<span class="text-red-500">*</span>
+                                <p class="text-xs text-black/50 text-right mt-1">Add your documents here, and you can uploaded up to 5 file max.</p>
+                            </label>
+                            <input type="file" rows="4" placeholder="Brief description shown under products"
+                                class="w-full border border-black/20 rounded px-4 py-2 outline-none focus:border-black">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION: Safety & Compliance -->
+                <div class="border-b border-black/10">
+                    <button class="accordion-toggle w-full flex justify-between items-center px-6 py-4 bg-gray-50">
+                        <h4 class="font-sans text-lg font-medium text-black">Safety & Compliance</h4>
+                        <svg class="accordion-icon w-5 h-5 text-black" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="px-6 py-6 hidden"></div>
+                </div>
+
+                <!-- SECTION: Shipping Info -->
+                <div class="border-b border-black/10">
+                    <button class="accordion-toggle w-full flex justify-between items-center px-6 py-4 bg-gray-50">
+                        <h4 class="font-sans text-lg font-medium text-black">Shipping Info</h4>
+                        <svg class="accordion-icon w-5 h-5 text-black" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="px-6 py-6 hidden"></div>
+                </div>
+
             </div>
         </div>
+
     </div>
+
 @endsection
-
-@push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="{{ asset('css/product-form.css') }}" rel="stylesheet">
-@endpush
-
 @push('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{{ asset('js/product-form.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.accordion-toggle').forEach(button => {
+                button.addEventListener('click', function () {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('.accordion-icon');
+
+                    content.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+        });
+    </script>
 @endpush

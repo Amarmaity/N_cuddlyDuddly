@@ -13,27 +13,28 @@ class SellerDashboardController extends Controller
     /**
      * Display the seller dashboard.
      */
-    public function index(Request $request)
+    public function index(Request $request, $id)
     {
         // Logged-in Seller
         $seller = Auth::guard('seller')->user();
+        $id = $seller->id;
 
-        $totalProducts = Products::where('seller_id', $seller->id)->count();
+        $totalProducts = Products::where('seller_id', $id)->count();
 
-        $totalOrders = OrderItem::whereHas('product', function ($q) use ($seller) {
-            $q->where('seller_id', $seller->id);
+        $totalOrders = OrderItem::whereHas('product', function ($q) use ($id) {
+            $q->where('seller_id', $id);
         })->count();
 
-        $totalEarning = OrderItem::whereHas('product', function ($q) use ($seller) {
-            $q->where('seller_id', $seller->id);
+        $totalEarning = OrderItem::whereHas('product', function ($q) use ($id) {
+            $q->where('seller_id', $id);
         })->sum('price');
 
-        $recentOrders = OrderItem::with('product','order')
-        ->whereHas('product', function($q) use ($seller){
-            $q->where('seller_id', $seller->id);
-        })->latest()
-        ->take(10)
-        ->get();
+        $recentOrders = OrderItem::with('product', 'order')
+            ->whereHas('product', function ($q) use ($id) {
+                $q->where('seller_id', $id);
+            })->latest()
+            ->take(10)
+            ->get();
 
         return view('seller.dashboard', compact(
             'seller',
