@@ -115,7 +115,7 @@
                     </div>
                 </div>
 
-                <!-- SECTION: Product Details -->
+                <!--Product images & Description -->
                 <div class="border-b border-black/10">
                     <button class="accordion-toggle w-full flex justify-between items-center px-6 py-4 bg-gray-50">
                         <h4 class="font-sans text-lg font-medium text-black">Product images & Description</h4>
@@ -125,13 +125,36 @@
                         </svg>
                     </button>
                     <div class="px-6 py-6 hidden">
-                        <div>
-                            <label class="block text-sm font-medium text-black mb-1">
-                                Short Description<span class="text-red-500">*</span>
-                                <p class="text-xs text-black/50 text-right mt-1">Add your documents here, and you can uploaded up to 5 file max.</p>
+                        <!-- Media Upload -->
+                        <div class="mb-8">
+                            <label class="block text-lg font-medium text-black mb-1">
+                                Media Upload
                             </label>
-                            <input type="file" rows="4" placeholder="Brief description shown under products"
-                                class="w-full border border-black/20 rounded px-4 py-2 outline-none focus:border-black">
+                            <p class="text-xs text-black/50 mb-4">Add your documents here, and you can upload up to 5 files max</p>
+                            
+                            <div class="border-2 border-dashed border-gray-200 rounded-lg p-12 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition-colors cursor-pointer relative">
+                                <input type="file" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                                <div class="mb-4">
+                                    <svg class="w-12 h-12 text-red-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                    </svg>
+                                </div>
+                                <p class="text-sm text-black mb-1">
+                                    Drag your file(s) or <span class="text-red-500">browse</span>
+                                </p>
+                                <p class="text-xs text-gray-500">
+                                    Max 20 MB files are allowed
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Product Description -->
+                        <div>
+                            <label class="block text-lg font-medium text-black mb-4">
+                                Product Description
+                            </label>
+                            <textarea rows="6" placeholder="Enter product description that is to be placed at the top"
+                                class="w-full border border-black/20 rounded-lg px-4 py-3 outline-none focus:border-black resize-none"></textarea>
                         </div>
                     </div>
                 </div>
